@@ -11,6 +11,8 @@ interface ExplorerContextType {
     setActiveFile: (file: FileNode) => void;
     theme: 'dark' | 'light';
     toggleTheme: () => void;
+    isSidebarVisible: boolean;
+    toggleSidebar: () => void;
 }
 
 const ExplorerContext = createContext<ExplorerContextType | undefined>(undefined);
@@ -20,10 +22,15 @@ export const ExplorerProvider: React.FC<{ children: ReactNode }> = ({ children }
     const [activeFile, setActiveFile] = useState<FileNode | null>(null);
     const [openFiles, setOpenFiles] = useState<FileNode[]>([]);
     const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+    const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
     const toggleTheme = () => {
         setTheme(prev => prev === 'dark' ? 'light' : 'dark');
         document.documentElement.classList.toggle('light-theme');
+    };
+
+    const toggleSidebar = () => {
+        setIsSidebarVisible(prev => !prev);
     };
 
     const toggleFolder = (id: string) => {
@@ -66,7 +73,9 @@ export const ExplorerProvider: React.FC<{ children: ReactNode }> = ({ children }
             closeFile,
             setActiveFile,
             theme,
-            toggleTheme
+            toggleTheme,
+            isSidebarVisible,
+            toggleSidebar,
         }}>
             {children}
         </ExplorerContext.Provider>

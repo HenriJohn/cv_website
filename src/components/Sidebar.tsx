@@ -72,7 +72,10 @@ const FileTreeItem = ({ node, depth }: { node: FileNode; depth: number }) => {
 };
 
 const Sidebar: React.FC = () => {
-    const { files } = useExplorer();
+    const { files, isSidebarVisible } = useExplorer();
+    const [isCollapsed, setIsCollapsed] = React.useState(false);
+
+    if (!isSidebarVisible) return null;
 
     return (
         <div className="flex flex-col w-64 bg-vscode-sidebar border-r border-[#252526] overflow-y-auto">
@@ -80,17 +83,22 @@ const Sidebar: React.FC = () => {
                 Explorer
             </div>
             <div className="flex-1 overflow-y-auto">
-                <div className="px-2 py-1 text-[11px] uppercase tracking-wider text-[#858585] font-semibold flex items-center justify-between cursor-pointer hover:bg-[#2a2d2e]">
+                <div 
+                    className="px-2 py-1 text-[11px] uppercase tracking-wider text-[#858585] font-semibold flex items-center justify-between cursor-pointer hover:bg-[#2a2d2e]"
+                    onClick={() => setIsCollapsed(!isCollapsed)}
+                >
                     <div className="flex items-center">
-                        <ChevronDown size={16} className="mr-1" />
+                        {isCollapsed ? <ChevronRight size={16} className="mr-1" /> : <ChevronDown size={16} className="mr-1" />}
                         <span>PORTFOLIO</span>
                     </div>
                 </div>
-                <div className="py-1">
-                    {files.map(node => (
-                        <FileTreeItem key={node.id} node={node} depth={0} />
-                    ))}
-                </div>
+                {!isCollapsed && (
+                    <div className="py-1">
+                        {files.map(node => (
+                            <FileTreeItem key={node.id} node={node} depth={0} />
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );

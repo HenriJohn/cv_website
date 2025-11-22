@@ -3,12 +3,16 @@ import { Files, Moon, Sun } from 'lucide-react';
 import { useExplorer } from '../context/ExplorerContext';
 
 const ActivityBar: React.FC = () => {
-    const { theme, toggleTheme } = useExplorer();
+    const { theme, toggleTheme, isSidebarVisible, toggleSidebar } = useExplorer();
     
     return (
         <div className="flex w-12 flex-col items-center py-2 bg-vscode-activityBar border-r border-[#252526] justify-between">
             <div className="flex flex-col w-full items-center">
-                <div className="w-full p-3 border-l-2 border-white cursor-pointer flex items-center justify-center hover:bg-white/10">
+                <div 
+                    className={`w-full p-3 cursor-pointer flex items-center justify-center hover:bg-white/10 ${isSidebarVisible ? 'border-l-2 border-white' : ''}`}
+                    onClick={toggleSidebar}
+                    title="Toggle Sidebar"
+                >
                     <Files size={24} className="text-white" />
                 </div>
             </div>
