@@ -75,7 +75,7 @@ const Sidebar: React.FC = () => {
     const { files } = useExplorer();
 
     return (
-        <div className="w-full md:w-64 bg-vscode-sidebar border-r border-[#252526] overflow-y-auto flex flex-col">
+        <div className="hidden md:flex md:w-64 bg-vscode-sidebar border-r border-[#252526] overflow-y-auto flex-col">
             <div className="px-4 py-2 text-[11px] uppercase tracking-wider text-[#858585] font-semibold border-b border-[#252526]">
                 Explorer
             </div>
