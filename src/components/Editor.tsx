@@ -1,12 +1,14 @@
-import React from 'react';
-import { X } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Eye, Code } from 'lucide-react';
 import { useExplorer } from '../context/ExplorerContext';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import ReactMarkdown from 'react-markdown';
 import type { FileNode } from '../data/fileSystem';
 
 const Editor: React.FC = () => {
     const { activeFile, openFiles, closeFile, setActiveFile } = useExplorer();
+    const [showPreview, setShowPreview] = useState(true);
 
     if (!activeFile) {
         return (
@@ -73,42 +75,91 @@ const Editor: React.FC = () => {
             </div>
 
             {/* Breadcrumbs */}
-            <div className="flex items-center px-4 py-1.5 text-[11px] text-[#858585] bg-vscode-editor border-b border-[#252526]">
-                <span>portfolio</span>
-                <span className="mx-1">&gt;</span>
-                {activeFile.id.includes('experience') && (
-                    <>
-                        <span>experience</span>
-                        <span className="mx-1">&gt;</span>
-                    </>
+            <div className="flex items-center justify-between px-4 py-1.5 text-[11px] text-[#858585] bg-vscode-editor border-b border-[#252526]">
+                <div className="flex items-center">
+                    <span>portfolio</span>
+                    <span className="mx-1">&gt;</span>
+                    {activeFile.id.includes('experience') && (
+                        <>
+                            <span>experience</span>
+                            <span className="mx-1">&gt;</span>
+                        </>
+                    )}
+                    <span>{activeFile.name}</span>
+                </div>
+                {activeFile.language === 'markdown' && (
+                    <button
+                        onClick={() => setShowPreview(!showPreview)}
+                        className="flex items-center gap-1 px-2 py-1 text-[11px] text-[#cccccc] hover:bg-[#2a2d2e] rounded transition-colors"
+                        title={showPreview ? 'Show Source' : 'Show Preview'}
+                    >
+                        {showPreview ? (
+                            <>
+                                <Code size={14} />
+                                <span>Source</span>
+                            </>
+                        ) : (
+                            <>
+                                <Eye size={14} />
+                                <span>Preview</span>
+                            </>
+                        )}
+                    </button>
                 )}
-                <span>{activeFile.name}</span>
             </div>
 
             {/* Content */}
             <div className="flex-1 overflow-auto relative" style={{ fontFamily: 'Consolas, "Courier New", monospace' }}>
-                <SyntaxHighlighter
-                    language={getLanguage(activeFile)}
-                    style={vscDarkPlus}
-                    customStyle={{
-                        margin: 0,
-                        padding: '20px',
-                        background: 'transparent',
-                        fontSize: '14px',
-                        lineHeight: '21px',
-                        fontFamily: 'Consolas, "Courier New", monospace',
-                    }}
-                    showLineNumbers={true}
-                    lineNumberStyle={{ 
-                        minWidth: '50px', 
-                        paddingRight: '20px', 
-                        color: '#858585', 
-                        textAlign: 'right',
-                        userSelect: 'none'
-                    }}
-                >
-                    {activeFile.content || ''}
-                </SyntaxHighlighter>
+                {activeFile.language === 'markdown' && showPreview ? (
+                    <div className="markdown-preview p-8 text-[#cccccc] max-w-4xl mx-auto">
+                        <ReactMarkdown
+                            components={{
+                                h1: ({node, ...props}) => <h1 className="text-3xl font-bold mb-4 text-white border-b border-[#404040] pb-2" {...props} />,
+                                h2: ({node, ...props}) => <h2 className="text-2xl font-bold mb-3 mt-6 text-white" {...props} />,
+                                h3: ({node, ...props}) => <h3 className="text-xl font-bold mb-2 mt-4 text-white" {...props} />,
+                                p: ({node, ...props}) => <p className="mb-4 leading-relaxed" {...props} />,
+                                ul: ({node, ...props}) => <ul className="list-disc list-inside mb-4 space-y-2" {...props} />,
+                                ol: ({node, ...props}) => <ol className="list-decimal list-inside mb-4 space-y-2" {...props} />,
+                                li: ({node, ...props}) => <li className="ml-4" {...props} />,
+                                a: ({node, ...props}) => <a className="text-[#4fc3f7] hover:underline" {...props} />,
+                                code: ({node, inline, ...props}: any) => 
+                                    inline ? (
+                                        <code className="bg-[#2d2d2d] px-1.5 py-0.5 rounded text-[#ce9178] text-sm" {...props} />
+                                    ) : (
+                                        <code className="block bg-[#1e1e1e] p-4 rounded my-4 overflow-x-auto" {...props} />
+                                    ),
+                                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-[#404040] pl-4 italic my-4 text-[#858585]" {...props} />,
+                                strong: ({node, ...props}) => <strong className="font-bold text-white" {...props} />,
+                                em: ({node, ...props}) => <em className="italic" {...props} />,
+                            }}
+                        >
+                            {activeFile.content || ''}
+                        </ReactMarkdown>
+                    </div>
+                ) : (
+                    <SyntaxHighlighter
+                        language={getLanguage(activeFile)}
+                        style={vscDarkPlus}
+                        customStyle={{
+                            margin: 0,
+                            padding: '20px',
+                            background: 'transparent',
+                            fontSize: '14px',
+                            lineHeight: '21px',
+                            fontFamily: 'Consolas, "Courier New", monospace',
+                        }}
+                        showLineNumbers={true}
+                        lineNumberStyle={{ 
+                            minWidth: '50px', 
+                            paddingRight: '20px', 
+                            color: '#858585', 
+                            textAlign: 'right',
+                            userSelect: 'none'
+                        }}
+                    >
+                        {activeFile.content || ''}
+                    </SyntaxHighlighter>
+                )}
             </div>
         </div>
     );
