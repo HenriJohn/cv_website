@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+  background-color: #1e1e1e;
+  color: #cccccc;
+
+  /* Exact VS Code Dark+ colors */
+  --vscode-bg: #1e1e1e;
+  --vscode-sidebar: #252526;
+  --vscode-activityBar: #333333;
+  --vscode-statusBar: #007acc;
+  --vscode-statusBarItem: #ffffff;
+  --vscode-editor: #1e1e1e;
+  --vscode-tabInactive: #2d2d2d;
+  --vscode-text: #cccccc;
+  --vscode-accent: #0e639c;
+  --vscode-selection: #264f78;
+  --vscode-lineHighlight: #2a2d2e;
+  --vscode-terminal: #1e1e1e;
+  --vscode-titleBar: #3c3c3c;
+  --vscode-border: #454545;
+  --vscode-input-bg: #3c3c3c;
+  --vscode-input-border: #454545;
+}
+
+.light-theme {
+  color-scheme: light;
+  --vscode-bg: #ffffff;
+  --vscode-sidebar: #f3f3f3;
+  --vscode-activityBar: #2c2c2c;
+  --vscode-statusBar: #007acc;
+  --vscode-statusBarItem: #ffffff;
+  --vscode-editor: #ffffff;
+  --vscode-tabInactive: #ececec;
+  --vscode-text: #333333;
+  --vscode-accent: #007acc;
+  --vscode-selection: #add6ff;
+  --vscode-lineHighlight: #f0f0f0;
+  --vscode-terminal: #ffffff;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+.light-theme .text-gray-400 {
+  color: #666666;
+}
+
+.light-theme .text-gray-300 {
+  color: #333333;
+}
+
+.light-theme .text-gray-500 {
+  color: #888888;
+}
+
+.light-theme .bg-vscode-editor {
+  background-color: var(--vscode-editor);
+}
+
+.light-theme .bg-vscode-sidebar {
+  background-color: var(--vscode-sidebar);
+}
+
+.light-theme .bg-vscode-activityBar {
+  background-color: var(--vscode-activityBar);
+}
+
+.light-theme .bg-vscode-terminal {
+  background-color: var(--vscode-terminal);
+}
+
+.light-theme .bg-vscode-tabInactive {
+  background-color: var(--vscode-tabInactive);
+}
+
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #424242;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4e4e4e;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
