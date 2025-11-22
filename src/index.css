@@ -118,11 +118,3 @@ body {
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
-
-/* Responsive utilities for mobile */
-@media (max-width: 767px) {
-  .sidebar-responsive,
-  .activity-bar-responsive {
-    display: none !important;
-  }
-}
