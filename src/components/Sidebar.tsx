@@ -75,18 +75,20 @@ const Sidebar: React.FC = () => {
     const { files } = useExplorer();
 
     return (
-        <div className="w-64 bg-vscode-sidebar flex flex-col border-r border-[#252526] h-full select-none">
-            <div className="h-[35px] px-4 flex items-center text-[11px] font-bold tracking-wide text-[#cccccc] uppercase border-b border-[#252526]">
+        <div className="w-full md:w-64 bg-vscode-sidebar border-r border-[#252526] overflow-y-auto flex flex-col">
+            <div className="px-4 py-2 text-[11px] uppercase tracking-wider text-[#858585] font-semibold border-b border-[#252526]">
                 Explorer
             </div>
             <div className="flex-1 overflow-y-auto">
-                <div className="px-2 py-1.5 font-bold text-[11px] flex items-center cursor-pointer hover:bg-[#2a2d2e] text-white uppercase tracking-wide">
-                    <ChevronDown size={16} className="mr-1" />
-                    PORTFOLIO
+                <div className="px-2 py-1 text-[11px] uppercase tracking-wider text-[#858585] font-semibold flex items-center justify-between cursor-pointer hover:bg-[#2a2d2e]">
+                    <div className="flex items-center">
+                        <ChevronDown size={16} className="mr-1" />
+                        <span>PORTFOLIO</span>
+                    </div>
                 </div>
-                <div>
-                    {files[0].children?.map(node => (
-                        <FileTreeItem key={node.id} node={node} depth={1} />
+                <div className="py-1">
+                    {files.map(node => (
+                        <FileTreeItem key={node.id} node={node} depth={0} />
                     ))}
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown, Plus, Trash2, Maximize2, X } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { useExplorer } from '../context/ExplorerContext';
 
 const Terminal: React.FC = () => {
@@ -102,21 +102,18 @@ const Terminal: React.FC = () => {
     };
 
     return (
-        <div className="h-48 bg-vscode-terminal border-t border-[#252526] flex flex-col" onClick={() => inputRef.current?.focus()}>
+        <div className="h-48 md:h-56 bg-vscode-terminal border-t border-[#252526] flex flex-col" onClick={() => inputRef.current?.focus()}>
             {/* Terminal Tabs */}
-            <div className="flex items-center justify-between px-4 py-1.5 border-b border-[#252526] bg-vscode-terminal">
-                <div className="flex items-center gap-6 text-[11px] uppercase tracking-wide text-[#cccccc]">
-                    <span className="cursor-pointer hover:text-white opacity-60">Problems</span>
-                    <span className="cursor-pointer hover:text-white opacity-60">Output</span>
-                    <span className="cursor-pointer hover:text-white opacity-60">Debug Console</span>
+            <div className="flex items-center justify-between px-2 md:px-4 py-1.5 border-b border-[#252526] bg-vscode-terminal">
+                <div className="flex items-center gap-3 md:gap-6 text-[10px] md:text-[11px] uppercase tracking-wide text-[#cccccc]">
+                    <span className="hidden md:inline cursor-pointer hover:text-white opacity-60">Problems</span>
+                    <span className="hidden md:inline cursor-pointer hover:text-white opacity-60">Output</span>
                     <span className="cursor-pointer text-white border-b-2 border-[#007acc] pb-1">Terminal</span>
                 </div>
                 <div className="flex items-center gap-2 text-[#cccccc]">
-                    <Plus size={14} className="cursor-pointer hover:text-white" />
-                    <Trash2 size={14} className="cursor-pointer hover:text-white" onClick={() => setHistory([])} />
-                    <ChevronDown size={14} className="cursor-pointer hover:text-white" />
-                    <Maximize2 size={14} className="cursor-pointer hover:text-white" />
-                    <X size={14} className="cursor-pointer hover:text-white" />
+                    <div title="Clear terminal">
+                        <Trash2 size={14} className="cursor-pointer hover:text-white" onClick={() => setHistory([])} />
+                    </div>
                 </div>
             </div>
 

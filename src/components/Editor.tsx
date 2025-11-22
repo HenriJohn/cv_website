@@ -10,19 +10,19 @@ const Editor: React.FC = () => {
 
     if (!activeFile) {
         return (
-            <div className="flex-1 flex flex-col items-center justify-center bg-vscode-editor text-[#858585]">
-                <div className="text-center">
-                    <div className="text-6xl font-light mb-4 text-[#cccccc] opacity-20">
-                        <svg className="inline-block" width="80" height="80" viewBox="0 0 16 16" fill="currentColor">
+            <div className="flex-1 flex flex-col items-center justify-center bg-vscode-editor text-[#858585] p-4">
+                <div className="text-center max-w-md">
+                    <div className="text-4xl md:text-6xl font-light mb-4 text-[#cccccc] opacity-20">
+                        <svg className="inline-block" width="60" height="60" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M8 0L0 8l8 8 8-8z"/>
                         </svg>
                     </div>
-                    <div className="text-xl font-light mb-2 text-[#cccccc]">Henri-John Plaatjies</div>
-                    <div className="text-sm mb-8">Select a file from the explorer to view content</div>
-                    <div className="text-xs space-y-1">
-                        <div>Show All Commands <kbd className="bg-[#3c3c3c] px-2 py-0.5 rounded border border-[#454545] text-[#cccccc]">⇧⌘P</kbd></div>
-                        <div>Go to File <kbd className="bg-[#3c3c3c] px-2 py-0.5 rounded border border-[#454545] text-[#cccccc]">⌘P</kbd></div>
-                        <div>Find in Files <kbd className="bg-[#3c3c3c] px-2 py-0.5 rounded border border-[#454545] text-[#cccccc]">⇧⌘F</kbd></div>
+                    <div className="text-lg md:text-xl font-light mb-2 text-[#cccccc]">Henri-John Plaatjies</div>
+                    <div className="text-xs md:text-sm mb-4">Senior Test Automation Engineer</div>
+                    <div className="text-xs md:text-sm mb-8 text-[#858585]">
+                        <span className="hidden md:inline">Select a file from the explorer or </span>
+                        <span className="md:hidden">Type </span>
+                        <span className="text-yellow-400">help</span> in the terminal below
                     </div>
                 </div>
             </div>
