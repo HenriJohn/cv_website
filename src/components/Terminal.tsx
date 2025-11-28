@@ -15,7 +15,11 @@ const Terminal: React.FC = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const bottomRef = useRef<HTMLDivElement>(null);
 
-    const availableCommands = ['help', 'about', 'skills', 'experience', 'contact', 'theme', 'clear', 'projects', 'download-cv', 'sudo make-coffee', 'npm install happiness'];
+    const availableCommands = [
+        'help', 'about', 'skills', 'experience', 'contact', 'theme', 'clear', 'projects', 'download-cv',
+        // Easter eggs
+        'sudo', 'hack', 'matrix', 'coffee', 'joke', 'quote', 'konami'
+    ];
 
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
