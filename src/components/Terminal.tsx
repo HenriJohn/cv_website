@@ -118,22 +118,120 @@ const Terminal: React.FC = () => {
                     </div>
                 );
                 break;
-            case 'sudo make-coffee':
+            case 'sudo':
+            case 'sudo su':
                 output = (
-                    <div className="text-yellow-400">
-                        ☕ Brewing coffee...
-                        <br />Error: Coffee machine not found. Please install coffee-maker package.
-                        <br />💡 Tip: Try 'npm install coffee' instead!
+                    <div className="text-red-400">
+                        [sudo] password for henri-john: 
+                        <br />Sorry, try again.
+                        <br />[sudo] password for henri-john:
+                        <br />Sorry, try again.
+                        <br />[sudo] password for henri-john:
+                        <br />sudo: 3 incorrect password attempts
+                        <br />
+                        <br /><span className="text-yellow-400">Nice try! 😄 But you don't have sudo access here.</span>
                     </div>
                 );
                 break;
-            case 'npm install happiness':
+            case 'hack':
+            case 'hack the planet':
                 output = (
                     <div className="text-green-400">
-                        📦 Installing happiness@latest...
-                        <br />✓ happiness@1.0.0 installed successfully!
-                        <br />💚 You now have +100 happiness points!
-                        <br />🎉 Remember: Happiness is not a package, it's a mindset!
+                        <span className="animate-pulse">Initializing hack sequence...</span>
+                        <br />▓▓▓▓▓▓▓▓▓▓ 100%
+                        <br />
+                        <br />Access granted to: <span className="text-red-400">mainframe.gibson.net</span>
+                        <br />Bypassing firewall...
+                        <br />Decrypting files...
+                        <br />
+                        <br /><span className="text-yellow-400">🎉 Congratulations! You're now a 1337 h4x0r!</span>
+                        <br /><span className="text-gray-400">(Just kidding - this is just a portfolio site 😉)</span>
+                    </div>
+                );
+                break;
+            case 'matrix':
+                output = (
+                    <div className="text-green-400 font-mono">
+                        <span className="animate-pulse">Wake up, Neo...</span>
+                        <br />The Matrix has you...
+                        <br />Follow the white rabbit 🐰
+                        <br />
+                        <br />01001000 01100101 01101100 01101100 01101111
+                        <br />01010111 01101111 01110010 01101100 01100100
+                        <br />
+                        <br /><span className="text-white">Knock, knock, Neo.</span>
+                    </div>
+                );
+                break;
+            case 'coffee':
+            case 'make coffee':
+                output = (
+                    <div className="text-yellow-400">
+                        ☕ Brewing fresh coffee...
+                        <br />
+                        <br />        (  )   (   )  )
+                        <br />         ) (   )  (  (
+                        <br />         ( )  (    ) )
+                        <br />         _____________
+                        <br />        {'<_____________>'} ___
+                        <br />        |             |/ _ \\
+                        <br />        |               | | |
+                        <br />        |               |_| |
+                        <br />     ___|             |\\___/
+                        <br />    /    \\___________/    \\
+                        <br />    \\_____________________/
+                        <br />
+                        <br /><span className="text-green-400">✓ Coffee ready!</span> Time to code! 💻
+                    </div>
+                );
+                break;
+            case 'joke':
+                const jokes = [
+                    "Why do programmers prefer dark mode? Because light attracts bugs! 🐛",
+                    "How many programmers does it take to change a light bulb? None, that's a hardware problem! 💡",
+                    "Why do Java developers wear glasses? Because they don't C#! 👓",
+                    "A SQL query walks into a bar, walks up to two tables and asks... 'Can I JOIN you?' 🍺",
+                    "Why did the programmer quit his job? Because he didn't get arrays! 📊",
+                    "What's a programmer's favorite hangout place? Foo Bar! 🍻",
+                    "Why do programmers always mix up Halloween and Christmas? Because Oct 31 == Dec 25! 🎃🎄",
+                    "There are 10 types of people in the world: those who understand binary, and those who don't. 😄"
+                ];
+                output = (
+                    <div className="text-cyan-400">
+                        😄 {jokes[Math.floor(Math.random() * jokes.length)]}
+                    </div>
+                );
+                break;
+            case 'quote':
+                const quotes = [
+                    '"First, solve the problem. Then, write the code." - John Johnson',
+                    '"Code is like humor. When you have to explain it, it\'s bad." - Cory House',
+                    '"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." - Martin Fowler',
+                    '"Testing leads to failure, and failure leads to understanding." - Burt Rutan',
+                    '"The best error message is the one that never shows up." - Thomas Fuchs',
+                    '"Quality is not an act, it is a habit." - Aristotle',
+                    '"The only way to go fast, is to go well." - Robert C. Martin',
+                    '"Make it work, make it right, make it fast." - Kent Beck'
+                ];
+                output = (
+                    <div className="text-purple-400 italic">
+                        💭 {quotes[Math.floor(Math.random() * quotes.length)]}
+                    </div>
+                );
+                break;
+            case 'konami':
+            case '↑↑↓↓←→←→ba':
+                output = (
+                    <div className="text-yellow-400">
+                        <span className="text-2xl">🎮 KONAMI CODE ACTIVATED! 🎮</span>
+                        <br />
+                        <br />+30 Lives
+                        <br />+Unlimited Continues
+                        <br />+God Mode Enabled
+                        <br />
+                        <br /><span className="text-green-400">Achievement Unlocked: "Old School Gamer" 🏆</span>
+                        <br />
+                        <br /><span className="text-gray-400">You've discovered the secret! You're awesome! 🌟</span>
                     </div>
                 );
                 break;
