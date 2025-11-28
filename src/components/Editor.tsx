@@ -6,6 +6,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import ReactMarkdown from 'react-markdown';
 import type { FileNode } from '../data/fileSystem';
 import ParticleBackground from './ParticleBackground';
+import InteractiveJsonViewer from './InteractiveJsonViewer';
 
 const Editor: React.FC = () => {
     const { activeFile, openFiles, closeFile, setActiveFile } = useExplorer();
@@ -114,7 +115,9 @@ const Editor: React.FC = () => {
 
             {/* Content */}
             <div className="flex-1 overflow-auto relative" style={{ fontFamily: 'Consolas, "Courier New", monospace' }}>
-                {activeFile.language === 'markdown' && showPreview ? (
+                {activeFile.language === 'json' ? (
+                    <InteractiveJsonViewer content={activeFile.content || ''} />
+                ) : activeFile.language === 'markdown' && showPreview ? (
                     <div className="markdown-preview p-8 text-[#cccccc] max-w-4xl mx-auto">
                         <ReactMarkdown
                             components={{
