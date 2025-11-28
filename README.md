@@ -156,6 +156,7 @@ cv_website/
 
 Type these commands in the terminal:
 
+### Standard Commands
 - `help` - Show all available commands
 - `about` - Display profile summary
 - `skills` - List technical skills
@@ -163,6 +164,16 @@ Type these commands in the terminal:
 - `contact` - Show contact information
 - `theme` - Toggle light/dark theme
 - `clear` - Clear terminal output
+
+### 🎁 Easter Egg Commands
+Try these hidden commands for some fun surprises:
+- `sudo` - Try to run with elevated privileges (you'll see what happens!)
+- `hack` - Initiate "hacking" sequence
+- `matrix` - Enter the Matrix
+- `coffee` - Get a coffee break message
+- `joke` - Get a random programming joke
+- `quote` - Get an inspirational tech quote
+- `konami` - Classic cheat code (or use arrow keys: ↑↑↓↓←→←→BA)
 
 ## 📦 Deployment
 
