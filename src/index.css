@@ -89,6 +89,11 @@
   color: #666666;
 }
 
+/* Override white text in light theme */
+.light-theme .text-white {
+  color: #1a1a1a !important;
+}
+
 
 body {
   margin: 0;
