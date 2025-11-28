@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import type { FileNode } from '../data/fileSystem';
 import ParticleBackground from './ParticleBackground';
 import InteractiveJsonViewer from './InteractiveJsonViewer';
+import TypingAnimation from './TypingAnimation';
 
 const Editor: React.FC = () => {
     const { activeFile, openFiles, closeFile, setActiveFile } = useExplorer();
@@ -24,8 +25,12 @@ const Editor: React.FC = () => {
                             <path d="M8 0L0 8l8 8 8-8z"/>
                         </svg>
                     </div>
-                    <div className="text-lg md:text-xl font-light mb-2 text-[#cccccc] transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">Henri-John Plaatjies</div>
-                    <div className="text-xs md:text-sm mb-4 transition-all duration-300 hover:text-[#4fc3f7]">Senior Test Automation Engineer</div>
+                    <div className="text-lg md:text-xl font-light mb-2 text-[#cccccc] transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                        <TypingAnimation text="Henri-John Plaatjies" speed={80} />
+                    </div>
+                    <div className="text-xs md:text-sm mb-4 transition-all duration-300 hover:text-[#4fc3f7]">
+                        <TypingAnimation text="Senior Test Automation Engineer" speed={60} delay={1600} />
+                    </div>
                     <div className="text-xs md:text-sm mb-8 text-[#858585]">
                         <span className="hidden md:inline">Select a file from the explorer or </span>
                         <span className="md:hidden">Type </span>
