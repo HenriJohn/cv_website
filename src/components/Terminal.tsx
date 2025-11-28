@@ -347,7 +347,7 @@ const Terminal: React.FC = () => {
                     <span data-testid="terminal-tab" className="cursor-pointer text-white border-b-2 border-vscode-accent pb-1">Terminal</span>
                 </div>
                 <div className="flex items-center gap-3 text-vscode-text">
-                    <div data-testid="terminal-clear-btn" title="Clear terminal" onClick={(e) => { e.stopPropagation(); setHistory([]); }}>
+                    <div data-testid="terminal-clear-btn" title="Clear terminal and reset size" onClick={(e) => { e.stopPropagation(); setHistory([]); setTerminalHeight(200); }}>
                         <Trash2 size={14} className="cursor-pointer hover:text-white" />
                     </div>
                     <div data-testid="terminal-toggle-btn" title={isMinimized ? "Maximize terminal" : "Minimize terminal"} onClick={(e) => { e.stopPropagation(); setIsMinimized(!isMinimized); }}>
