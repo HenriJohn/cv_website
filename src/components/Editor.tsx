@@ -11,7 +11,7 @@ import TypingAnimation from './TypingAnimation';
 import TestAutomationShowcase from './TestAutomationShowcase';
 
 const Editor: React.FC = () => {
-    const { activeFile, openFiles, closeFile, setActiveFile } = useExplorer();
+    const { activeFile, openFiles, closeFile, setActiveFile, openFile, files } = useExplorer();
     const [showPreview, setShowPreview] = useState(true);
 
     if (!activeFile) {
@@ -37,6 +37,21 @@ const Editor: React.FC = () => {
                         <span className="md:hidden">Type </span>
                         <span className="text-yellow-400 font-semibold transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">help</span> in the terminal below
                     </div>
+                    
+                    {/* Test Automation Showcase Button */}
+                    <button
+                        data-testid="open-showcase-btn"
+                        onClick={() => {
+                            const showcaseFile = files[0]?.children?.find(f => f.id === 'test-showcase');
+                            if (showcaseFile) {
+                                openFile(showcaseFile);
+                            }
+                        }}
+                        className="px-6 py-3 bg-gradient-to-r from-[#007acc] to-[#005a9e] text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,122,204,0.5)] flex items-center gap-2 mx-auto"
+                    >
+                        <span>🎯</span>
+                        <span>View Test Automation Showcase</span>
+                    </button>
                 </div>
             </div>
         );
