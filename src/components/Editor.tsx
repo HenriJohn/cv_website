@@ -26,10 +26,10 @@ const Editor: React.FC = () => {
                         </svg>
                     </div>
                     <div className="text-lg md:text-xl font-light mb-2 text-[#cccccc] transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-                        <TypingAnimation text="Henri-John Plaatjies" speed={80} />
+                        <TypingAnimation text="Henri-John Plaatjies" speed={80} showCursor={false} />
                     </div>
                     <div className="text-xs md:text-sm mb-4 transition-all duration-300 hover:text-[#4fc3f7]">
-                        <TypingAnimation text="Senior Test Automation Engineer" speed={60} delay={1600} />
+                        <TypingAnimation text="Senior Test Automation Engineer" speed={60} delay={2000} />
                     </div>
                     <div className="text-xs md:text-sm mb-8 text-[#858585]">
                         <span className="hidden md:inline">Select a file from the explorer or </span>

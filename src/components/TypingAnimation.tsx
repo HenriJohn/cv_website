@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface TypingAnimationProps {
     text: string;
@@ -16,38 +16,47 @@ const TypingAnimation: React.FC<TypingAnimationProps> = ({
     showCursor = true 
 }) => {
     const [displayedText, setDisplayedText] = useState('');
-    const [currentIndex, setCurrentIndex] = useState(0);
     const [isComplete, setIsComplete] = useState(false);
+    const [hasStarted, setHasStarted] = useState(delay === 0);
+    const indexRef = useRef(0);
 
     useEffect(() => {
-        if (delay > 0) {
+        // Reset on text change
+        setDisplayedText('');
+        setIsComplete(false);
+        setHasStarted(delay === 0);
+        indexRef.current = 0;
+    }, [text, delay]);
+
+    useEffect(() => {
+        if (delay > 0 && !hasStarted) {
             const delayTimeout = setTimeout(() => {
-                setCurrentIndex(0);
+                setHasStarted(true);
             }, delay);
             return () => clearTimeout(delayTimeout);
         }
-    }, [delay]);
+    }, [delay, hasStarted]);
 
     useEffect(() => {
-        if (currentIndex < text.length) {
+        if (!hasStarted) return;
+
+        if (indexRef.current < text.length) {
             const timeout = setTimeout(() => {
-                setDisplayedText(prev => prev + text[currentIndex]);
-                setCurrentIndex(prev => prev + 1);
+                setDisplayedText(text.substring(0, indexRef.current + 1));
+                indexRef.current += 1;
             }, speed);
 
             return () => clearTimeout(timeout);
-        } else if (currentIndex === text.length && text.length > 0) {
+        } else if (indexRef.current === text.length && text.length > 0) {
             setIsComplete(true);
         }
-    }, [currentIndex, text, speed]);
+    }, [hasStarted, displayedText, text, speed]);
 
     return (
         <span className={className}>
             {displayedText}
             {showCursor && (
-                <span className={`inline-block w-[2px] h-[1em] bg-current ml-1 ${isComplete ? 'animate-blink' : ''}`}>
-                    |
-                </span>
+                <span className={`inline-block w-[2px] h-[1em] bg-current ml-1 align-middle ${isComplete ? 'animate-blink' : ''}`} />
             )}
         </span>
     );
