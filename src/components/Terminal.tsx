@@ -8,8 +8,13 @@ const Terminal: React.FC = () => {
     const [history, setHistory] = useState<Array<{ command: string; output: React.ReactNode }>>([
         { command: '', output: 'Welcome to the interactive terminal! Type "help" to see available commands.' }
     ]);
+    const [commandHistory, setCommandHistory] = useState<string[]>([]);
+    const [historyIndex, setHistoryIndex] = useState(-1);
+    const [suggestions, setSuggestions] = useState<string[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
     const bottomRef = useRef<HTMLDivElement>(null);
+
+    const availableCommands = ['help', 'about', 'skills', 'experience', 'contact', 'theme', 'clear', 'projects', 'download-cv', 'sudo make-coffee', 'npm install happiness'];
 
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -24,12 +29,16 @@ const Terminal: React.FC = () => {
                 output = (
                     <div className="text-gray-300">
                         Available commands:
-                        <br />  <span className="text-yellow-400">about</span>      - Display profile summary
-                        <br />  <span className="text-yellow-400">skills</span>     - List technical skills
-                        <br />  <span className="text-yellow-400">experience</span> - Show work experience
-                        <br />  <span className="text-yellow-400">contact</span>    - Show contact info
-                        <br />  <span className="text-yellow-400">theme</span>      - Toggle light/dark theme
-                        <br />  <span className="text-yellow-400">clear</span>      - Clear terminal
+                        <br />  <span className="text-yellow-400">about</span>       - Display profile summary
+                        <br />  <span className="text-yellow-400">skills</span>      - List technical skills
+                        <br />  <span className="text-yellow-400">experience</span>  - Show work experience
+                        <br />  <span className="text-yellow-400">contact</span>     - Show contact info
+                        <br />  <span className="text-yellow-400">projects</span>    - View featured projects
+                        <br />  <span className="text-yellow-400">download-cv</span> - Download CV as PDF
+                        <br />  <span className="text-yellow-400">theme</span>       - Toggle light/dark theme
+                        <br />  <span className="text-yellow-400">clear</span>       - Clear terminal
+                        <br />
+                        <br />  <span className="text-gray-500">💡 Tip: Use ↑/↓ arrows for command history, Tab for autocomplete</span>
                     </div>
                 );
                 break;
@@ -85,19 +94,100 @@ const Terminal: React.FC = () => {
                 break;
             case 'clear':
                 setHistory([]);
+                setCommandHistory([]);
+                setHistoryIndex(-1);
                 return;
+            case 'projects':
+                output = (
+                    <div>
+                        <span className="text-yellow-400 font-bold">Featured Projects:</span>
+                        <br />• Automated PayFast payment gateway testing suite
+                        <br />• CI/CD pipeline integration for Clicks Group
+                        <br />• Mobile test automation framework with Appium
+                        <br />• API testing framework with Playwright
+                    </div>
+                );
+                break;
+            case 'download-cv':
+            case 'download cv':
+                output = (
+                    <div>
+                        <span className="text-green-400">✓</span> Initiating CV download...
+                        <br />📄 <a href="/cv.pdf" download className="text-blue-400 underline">Click here to download CV</a>
+                    </div>
+                );
+                break;
+            case 'sudo make-coffee':
+                output = (
+                    <div className="text-yellow-400">
+                        ☕ Brewing coffee...
+                        <br />Error: Coffee machine not found. Please install coffee-maker package.
+                        <br />💡 Tip: Try 'npm install coffee' instead!
+                    </div>
+                );
+                break;
+            case 'npm install happiness':
+                output = (
+                    <div className="text-green-400">
+                        📦 Installing happiness@latest...
+                        <br />✓ happiness@1.0.0 installed successfully!
+                        <br />💚 You now have +100 happiness points!
+                        <br />🎉 Remember: Happiness is not a package, it's a mindset!
+                    </div>
+                );
+                break;
             default:
                 if (cleanCmd === '') return;
                 output = <span className="text-red-400">Command not found: {cleanCmd}. Type "help" for available commands.</span>;
         }
 
         setHistory([...history, { command: cmd, output }]);
+        setCommandHistory([...commandHistory, cmd]);
+        setHistoryIndex(-1);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
             handleCommand(input);
             setInput('');
+            setSuggestions([]);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (commandHistory.length > 0) {
+                const newIndex = historyIndex + 1;
+                if (newIndex < commandHistory.length) {
+                    setHistoryIndex(newIndex);
+                    setInput(commandHistory[commandHistory.length - 1 - newIndex]);
+                }
+            }
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (historyIndex > 0) {
+                const newIndex = historyIndex - 1;
+                setHistoryIndex(newIndex);
+                setInput(commandHistory[commandHistory.length - 1 - newIndex]);
+            } else if (historyIndex === 0) {
+                setHistoryIndex(-1);
+                setInput('');
+            }
+        } else if (e.key === 'Tab') {
+            e.preventDefault();
+            if (suggestions.length > 0) {
+                setInput(suggestions[0]);
+                setSuggestions([]);
+            }
+        }
+    };
+
+    const handleInputChange = (value: string) => {
+        setInput(value);
+        if (value.trim()) {
+            const matches = availableCommands.filter(cmd => 
+                cmd.toLowerCase().startsWith(value.toLowerCase())
+            );
+            setSuggestions(matches);
+        } else {
+            setSuggestions([]);
         }
     };
 
@@ -131,18 +221,31 @@ const Terminal: React.FC = () => {
                         <div className="text-[#cccccc] ml-4">{entry.output}</div>
                     </div>
                 ))}
-                <div className="flex items-center">
-                    <span className="text-green-400 mr-2">➜</span>
-                    <span className="text-blue-400 mr-2">~</span>
-                    <input
-                        ref={inputRef}
-                        type="text"
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        className="bg-transparent border-none outline-none text-[#cccccc] flex-1"
-                        autoFocus
-                    />
+                <div className="relative">
+                    <div className="flex items-center">
+                        <span className="text-green-400 mr-2">➜</span>
+                        <span className="text-blue-400 mr-2">~</span>
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            value={input}
+                            onChange={(e) => handleInputChange(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            className="bg-transparent border-none outline-none text-[#cccccc] flex-1"
+                            autoFocus
+                        />
+                    </div>
+                    {suggestions.length > 0 && (
+                        <div className="ml-10 mt-1 text-[#858585] text-xs">
+                            💡 Suggestions: {suggestions.map((s, i) => (
+                                <span key={s}>
+                                    <span className="text-yellow-400">{s}</span>
+                                    {i < suggestions.length - 1 && ', '}
+                                </span>
+                            ))}
+                            <span className="text-[#666]"> (Press Tab to autocomplete)</span>
+                        </div>
+                    )}
                 </div>
                 <div ref={bottomRef} />
             </div>
