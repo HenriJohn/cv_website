@@ -145,7 +145,7 @@ const TestAutomationShowcase: React.FC = () => {
                 </div>
             </div>
 
-            <div className="p-6 max-w-6xl mx-auto pb-40">
+            <div className="p-6 max-w-6xl mx-auto pb-40 mt-4">
                 <div className="mb-8">
                     <p className="text-gray-500">Interactive components designed for comprehensive test automation</p>
                 </div>
@@ -455,7 +455,7 @@ const TestAutomationShowcase: React.FC = () => {
                 <button
                     data-testid="open-modal-btn"
                     onClick={() => setShowModal(true)}
-                    className="px-4 py-2 bg-vscode-accent text-white rounded hover:bg-vscode-accent/80"
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
                 >
                     Open Modal
                 </button>
