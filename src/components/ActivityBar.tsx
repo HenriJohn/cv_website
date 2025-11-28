@@ -6,9 +6,10 @@ const ActivityBar: React.FC = () => {
     const { theme, toggleTheme, isSidebarVisible, toggleSidebar } = useExplorer();
     
     return (
-        <div className="flex w-12 flex-col items-center py-2 bg-vscode-activityBar border-r border-[#252526] justify-between">
+        <div data-testid="activity-bar" className="flex w-12 flex-col items-center py-2 bg-vscode-activityBar border-r border-[#252526] justify-between">
             <div className="flex flex-col w-full items-center">
                 <div 
+                    data-testid="toggle-sidebar-btn"
                     className={`w-full p-3 cursor-pointer flex items-center justify-center transition-all duration-200 hover:bg-white/10 ${isSidebarVisible ? 'border-l-2 border-white shadow-[0_0_10px_rgba(255,255,255,0.3)]' : ''}`}
                     onClick={toggleSidebar}
                     title="Toggle Sidebar"
@@ -18,6 +19,7 @@ const ActivityBar: React.FC = () => {
             </div>
             <div className="flex flex-col w-full items-center">
                 <div 
+                    data-testid="toggle-theme-btn"
                     className="w-full p-3 cursor-pointer flex items-center justify-center transition-all duration-200 hover:bg-white/10"
                     onClick={toggleTheme}
                     title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
