@@ -8,6 +8,7 @@ import type { FileNode } from '../data/fileSystem';
 import ParticleBackground from './ParticleBackground';
 import InteractiveJsonViewer from './InteractiveJsonViewer';
 import TypingAnimation from './TypingAnimation';
+import TestAutomationShowcase from './TestAutomationShowcase';
 
 const Editor: React.FC = () => {
     const { activeFile, openFiles, closeFile, setActiveFile } = useExplorer();
@@ -122,7 +123,9 @@ const Editor: React.FC = () => {
 
             {/* Content */}
             <div className="flex-1 overflow-auto relative" style={{ fontFamily: 'Consolas, "Courier New", monospace' }}>
-                {activeFile.language === 'json' ? (
+                {activeFile.id === 'test-showcase' && showPreview ? (
+                    <TestAutomationShowcase />
+                ) : activeFile.language === 'json' ? (
                     <InteractiveJsonViewer content={activeFile.content || ''} />
                 ) : activeFile.language === 'markdown' && showPreview ? (
                     <div className="markdown-preview p-8 text-[#cccccc] max-w-4xl mx-auto">
