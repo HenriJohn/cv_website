@@ -17,13 +17,13 @@ const Editor: React.FC = () => {
 
     if (!activeFile) {
         return (
-            <div className="flex-1 flex flex-col items-center justify-center bg-vscode-editor text-[#858585] p-4 relative overflow-hidden">
+            <div className="flex-1 flex flex-col items-center justify-center bg-vscode-editor text-gray-500 p-4 relative overflow-hidden">
                 {/* Animated gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#1e1e1e] via-[#252526] to-[#1e1e1e] animate-gradient-shift" />
+                <div className="absolute inset-0 bg-gradient-to-br from-vscode-bg via-vscode-sidebar to-vscode-bg animate-gradient-shift" />
                 <ParticleBackground />
                 <div className="text-center max-w-md relative z-10">
                     <div 
-                        className="text-4xl md:text-6xl font-light mb-4 text-[#cccccc] opacity-20 transition-all duration-500 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(0,168,232,0.6)] cursor-pointer group relative"
+                        className="text-4xl md:text-6xl font-light mb-4 text-vscode-text opacity-20 transition-all duration-500 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(0,168,232,0.6)] cursor-pointer group relative"
                         onClick={() => navigate('/test-showcase')}
                         data-testid="hidden-showcase-link"
                     >
@@ -32,19 +32,19 @@ const Editor: React.FC = () => {
                         </svg>
                         {/* Tooltip */}
                         <div className="absolute left-1/2 -translate-x-1/2 -bottom-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                            <div className="bg-[#1e1e1e] text-white text-xs px-3 py-2 rounded shadow-lg border border-[#3c3c3c] whitespace-nowrap">
+                            <div className="bg-vscode-bg text-white text-xs px-3 py-2 rounded shadow-lg border border-vscode-border whitespace-nowrap">
                                 🎯 Test Automation Showcase
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 w-2 h-2 bg-[#1e1e1e] border-t border-l border-[#3c3c3c]"></div>
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 w-2 h-2 bg-vscode-bg border-t border-l border-vscode-border"></div>
                             </div>
                         </div>
                     </div>
-                    <div className="text-lg md:text-xl font-light mb-2 text-[#cccccc] transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                    <div className="text-lg md:text-xl font-light mb-2 text-vscode-text transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
                         <TypingAnimation text="Henri-John Plaatjies" speed={80} showCursor={false} />
                     </div>
                     <div className="text-xs md:text-sm mb-4 transition-all duration-300 hover:text-[#4fc3f7]">
                         <TypingAnimation text="Senior Test Automation Engineer" speed={60} delay={2000} />
                     </div>
-                    <div className="text-xs md:text-sm mb-8 text-[#858585]">
+                    <div className="text-xs md:text-sm mb-8 text-gray-500">
                         <span className="hidden md:inline">Select a file from the explorer or </span>
                         <span className="md:hidden">Type </span>
                         <span className="text-yellow-400 font-semibold transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">help</span> in the terminal below
@@ -65,15 +65,15 @@ const Editor: React.FC = () => {
     return (
         <div data-testid="editor" className="flex-1 flex flex-col bg-vscode-editor overflow-hidden">
             {/* Tabs */}
-            <div data-testid="editor-tabs" className="flex bg-vscode-tabInactive overflow-x-auto scrollbar-hide h-[35px] border-b border-[#252526]">
+            <div data-testid="editor-tabs" className="flex bg-vscode-tabInactive overflow-x-auto scrollbar-hide h-[35px] border-b border-vscode-border">
                 {openFiles.map(file => (
                     <div
                         key={file.id}
                         data-testid={`editor-tab-${file.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
-                        className={`flex items-center px-3 py-2 min-w-fit cursor-pointer text-[13px] border-r border-[#252526] transition-all duration-200 ${
+                        className={`flex items-center px-3 py-2 min-w-fit cursor-pointer text-[13px] border-r border-vscode-border transition-all duration-200 ${
                             activeFile.id === file.id
                                 ? 'bg-vscode-editor text-white shadow-[0_-2px_0_0_#007acc_inset]'
-                                : 'bg-vscode-tabInactive text-[#969696] hover:bg-[#2d2d2d] hover:text-white'
+                                : 'bg-vscode-tabInactive text-gray-400 hover:bg-vscode-lineHighlight hover:text-white'
                         }`}
                         onClick={() => setActiveFile(file)}
                     >
@@ -100,7 +100,7 @@ const Editor: React.FC = () => {
             </div>
 
             {/* Breadcrumbs */}
-            <div className="flex items-center justify-between px-4 py-1.5 text-[11px] text-[#858585] bg-vscode-editor border-b border-[#252526]">
+            <div className="flex items-center justify-between px-4 py-1.5 text-[11px] text-gray-500 bg-vscode-editor border-b border-vscode-border">
                 <div className="flex items-center">
                     <span>portfolio</span>
                     <span className="mx-1">&gt;</span>
@@ -115,7 +115,7 @@ const Editor: React.FC = () => {
                 {activeFile.language === 'markdown' && (
                     <button
                         onClick={() => setShowPreview(!showPreview)}
-                        className="flex items-center gap-1 px-2 py-1 text-[11px] text-[#cccccc] hover:bg-[#2a2d2e] rounded transition-colors"
+                        className="flex items-center gap-1 px-2 py-1 text-[11px] text-vscode-text hover:bg-vscode-lineHighlight rounded transition-colors"
                         title={showPreview ? 'Show Source' : 'Show Preview'}
                     >
                         {showPreview ? (
@@ -138,7 +138,7 @@ const Editor: React.FC = () => {
                 {activeFile.language === 'json' ? (
                     <InteractiveJsonViewer content={activeFile.content || ''} />
                 ) : activeFile.language === 'markdown' && showPreview ? (
-                    <div className="markdown-preview p-8 text-[#cccccc] max-w-4xl mx-auto">
+                    <div className="markdown-preview p-8 text-vscode-text max-w-4xl mx-auto">
                         <ReactMarkdown
                             components={{
                                 h1: ({node, ...props}) => <h1 className="text-3xl font-bold mb-4 text-white border-b border-[#404040] pb-2" {...props} />,

@@ -193,15 +193,15 @@ const Terminal: React.FC = () => {
     };
 
     return (
-        <div data-testid="terminal" className={`${isMinimized ? 'h-[35px]' : 'h-48 md:h-56'} bg-vscode-terminal border-t border-[#252526] flex flex-col transition-all duration-200`}>
+        <div data-testid="terminal" className={`${isMinimized ? 'h-[35px]' : 'h-48 md:h-56'} bg-vscode-terminal border-t border-vscode-border flex flex-col transition-all duration-200`}>
             {/* Terminal Tabs */}
-            <div className="flex items-center justify-between px-2 md:px-4 py-1.5 border-b border-[#252526] bg-vscode-terminal">
-                <div className="flex items-center gap-3 md:gap-6 text-[10px] md:text-[11px] uppercase tracking-wide text-[#cccccc]">
+            <div className="flex items-center justify-between px-2 md:px-4 py-1.5 border-b border-vscode-border bg-vscode-terminal">
+                <div className="flex items-center gap-3 md:gap-6 text-[10px] md:text-[11px] uppercase tracking-wide text-vscode-text">
                     <span className="hidden md:inline cursor-pointer hover:text-white opacity-60">Problems</span>
                     <span className="hidden md:inline cursor-pointer hover:text-white opacity-60">Output</span>
                     <span data-testid="terminal-tab" className="cursor-pointer text-white border-b-2 border-[#007acc] pb-1">Terminal</span>
                 </div>
-                <div className="flex items-center gap-3 text-[#cccccc]">
+                <div className="flex items-center gap-3 text-vscode-text">
                     <div data-testid="terminal-clear-btn" title="Clear terminal" onClick={(e) => { e.stopPropagation(); setHistory([]); }}>
                         <Trash2 size={14} className="cursor-pointer hover:text-white" />
                     </div>
@@ -227,7 +227,7 @@ const Terminal: React.FC = () => {
                                 <span className="text-gray-400">{entry.command}</span>
                             </div>
                         )}
-                        <div className="text-[#cccccc] ml-4">{entry.output}</div>
+                        <div className="text-vscode-text ml-4">{entry.output}</div>
                     </div>
                 ))}
                 <div className="relative">
@@ -241,12 +241,12 @@ const Terminal: React.FC = () => {
                             value={input}
                             onChange={(e) => handleInputChange(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            className="bg-transparent border-none outline-none text-[#cccccc] flex-1"
+                            className="bg-transparent border-none outline-none text-vscode-text flex-1"
                             autoFocus
                         />
                     </div>
                     {suggestions.length > 0 && (
-                        <div className="ml-10 mt-1 text-[#858585] text-xs">
+                        <div className="ml-10 mt-1 text-gray-500 text-xs">
                             💡 Suggestions: {suggestions.map((s, i) => (
                                 <span key={s}>
                                     <span className="text-yellow-400">{s}</span>

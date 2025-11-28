@@ -40,8 +40,8 @@ const FileTreeItem = ({ node, depth }: { node: FileNode; depth: number }) => {
                 data-testid={`file-tree-item-${node.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                 className={`flex items-center py-0.5 px-2 cursor-pointer text-[13px] transition-all duration-200 ${
                     isActive 
-                        ? 'bg-[#37373d] text-white shadow-[2px_0_0_0_#007acc_inset]' 
-                        : 'text-[#cccccc] hover:bg-[#2a2d2e] hover:text-white hover:shadow-[2px_0_0_0_rgba(0,122,204,0.3)_inset]'
+                        ? 'bg-vscode-selection text-white shadow-[2px_0_0_0_#007acc_inset]' 
+                        : 'text-vscode-text hover:bg-vscode-lineHighlight hover:text-white hover:shadow-[2px_0_0_0_rgba(0,122,204,0.3)_inset]'
                 }`}
                 style={{ paddingLeft: `${depth * 16 + 8}px` }}
                 onClick={handleClick}
@@ -79,14 +79,14 @@ const Sidebar: React.FC = () => {
     if (!isSidebarVisible) return null;
 
     return (
-        <div data-testid="sidebar" className="flex flex-col w-64 bg-vscode-sidebar border-r border-[#252526] overflow-y-auto">
-            <div data-testid="sidebar-title" className="px-4 py-2 text-[11px] uppercase tracking-wider text-[#858585] font-semibold border-b border-[#252526]">
+        <div data-testid="sidebar" className="flex flex-col w-64 bg-vscode-sidebar border-r border-vscode-border overflow-y-auto">
+            <div data-testid="sidebar-title" className="px-4 py-2 text-[11px] uppercase tracking-wider text-gray-500 font-semibold border-b border-vscode-border">
                 Explorer
             </div>
             <div className="flex-1 overflow-y-auto">
                 <div 
                     data-testid="portfolio-section-toggle"
-                    className="px-2 py-1 text-[11px] uppercase tracking-wider text-[#858585] font-semibold flex items-center justify-between cursor-pointer hover:bg-[#2a2d2e]"
+                    className="px-2 py-1 text-[11px] uppercase tracking-wider text-gray-500 font-semibold flex items-center justify-between cursor-pointer hover:bg-vscode-lineHighlight"
                     onClick={() => setIsCollapsed(!isCollapsed)}
                 >
                     <div className="flex items-center">

@@ -77,6 +77,18 @@
   background-color: var(--vscode-tabInactive);
 }
 
+.light-theme .border-vscode-border {
+  border-color: #e0e0e0;
+}
+
+.light-theme .text-vscode-text {
+  color: var(--vscode-text);
+}
+
+.light-theme .text-vscode-muted {
+  color: #666666;
+}
+
 
 body {
   margin: 0;

@@ -6,7 +6,7 @@ const ActivityBar: React.FC = () => {
     const { theme, toggleTheme, isSidebarVisible, toggleSidebar } = useExplorer();
     
     return (
-        <div data-testid="activity-bar" className="flex w-12 flex-col items-center py-2 bg-vscode-activityBar border-r border-[#252526] justify-between">
+        <div data-testid="activity-bar" className="flex w-12 flex-col items-center py-2 bg-vscode-activityBar border-r border-vscode-border justify-between">
             <div className="flex flex-col w-full items-center">
                 <div 
                     data-testid="toggle-sidebar-btn"
@@ -25,9 +25,9 @@ const ActivityBar: React.FC = () => {
                     title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
                 >
                     {theme === 'dark' ? (
-                        <Sun size={24} className="text-[#858585] transition-all duration-200 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
+                        <Sun size={24} className="text-gray-400 transition-all duration-200 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
                     ) : (
-                        <Moon size={24} className="text-[#858585] transition-all duration-200 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
+                        <Moon size={24} className="text-gray-400 transition-all duration-200 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
                     )}
                 </div>
             </div>
