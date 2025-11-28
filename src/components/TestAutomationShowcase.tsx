@@ -128,7 +128,7 @@ const TestAutomationShowcase: React.FC = () => {
     return (
         <div className="w-full bg-vscode-editor text-vscode-text">
             {/* Header with Back Button */}
-            <div className="sticky top-0 z-50 bg-vscode-bg border-b border-vscode-border px-6 py-4">
+            <div className="sticky top-0 z-50 bg-vscode-editor border-b border-vscode-border px-6 py-4">
                 <div className="max-w-6xl mx-auto flex items-center justify-between">
                     <button
                         data-testid="back-to-cv-btn"
