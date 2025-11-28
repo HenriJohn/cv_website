@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Loader, Search, AlertCircle } from 'lucide-react';
+import { CheckCircle, Loader, Search, AlertCircle, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const TestAutomationShowcase: React.FC = () => {
+    const navigate = useNavigate();
     // Dynamic Content
     const [dynamicText, setDynamicText] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -123,11 +125,29 @@ const TestAutomationShowcase: React.FC = () => {
         : tableData.filter(item => item.status === filterStatus);
 
     return (
-        <div className="p-6 bg-vscode-editor text-[#cccccc] max-w-6xl mx-auto">
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold text-white mb-2">🎯 Test Automation Showcase</h1>
-                <p className="text-[#858585]">Interactive components designed for comprehensive test automation</p>
+        <div className="w-full bg-vscode-editor text-[#cccccc]">
+            {/* Header with Back Button */}
+            <div className="sticky top-0 z-50 bg-[#1e1e1e] border-b border-[#3c3c3c] px-6 py-4">
+                <div className="max-w-6xl mx-auto flex items-center justify-between">
+                    <button
+                        data-testid="back-to-cv-btn"
+                        onClick={() => navigate('/')}
+                        className="flex items-center gap-2 px-4 py-2 bg-[#252526] hover:bg-[#2a2d2e] text-white rounded transition-colors"
+                    >
+                        <ArrowLeft size={18} />
+                        <span>Back to CV</span>
+                    </button>
+                    <div>
+                        <h1 className="text-2xl font-bold text-white">🎯 Test Automation Showcase</h1>
+                    </div>
+                    <div className="w-32"></div> {/* Spacer for centering */}
+                </div>
             </div>
+
+            <div className="p-6 max-w-6xl mx-auto pb-20">
+                <div className="mb-8">
+                    <p className="text-[#858585]">Interactive components designed for comprehensive test automation</p>
+                </div>
 
             {/* Toast Notification */}
             {showToast && (
@@ -468,6 +488,7 @@ const TestAutomationShowcase: React.FC = () => {
                         </div>
                     </div>
                 )}
+            </div>
             </div>
         </div>
     );

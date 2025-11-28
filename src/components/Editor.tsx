@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Eye, Code } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useExplorer } from '../context/ExplorerContext';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -8,11 +9,11 @@ import type { FileNode } from '../data/fileSystem';
 import ParticleBackground from './ParticleBackground';
 import InteractiveJsonViewer from './InteractiveJsonViewer';
 import TypingAnimation from './TypingAnimation';
-import TestAutomationShowcase from './TestAutomationShowcase';
 
 const Editor: React.FC = () => {
-    const { activeFile, openFiles, closeFile, setActiveFile, openFile, files } = useExplorer();
+    const { activeFile, openFiles, closeFile, setActiveFile } = useExplorer();
     const [showPreview, setShowPreview] = useState(true);
+    const navigate = useNavigate();
 
     if (!activeFile) {
         return (
@@ -21,10 +22,21 @@ const Editor: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-[#1e1e1e] via-[#252526] to-[#1e1e1e] animate-gradient-shift" />
                 <ParticleBackground />
                 <div className="text-center max-w-md relative z-10">
-                    <div className="text-4xl md:text-6xl font-light mb-4 text-[#cccccc] opacity-20 transition-all duration-500 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(0,168,232,0.6)]">
+                    <div 
+                        className="text-4xl md:text-6xl font-light mb-4 text-[#cccccc] opacity-20 transition-all duration-500 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(0,168,232,0.6)] cursor-pointer group relative"
+                        onClick={() => navigate('/test-showcase')}
+                        data-testid="hidden-showcase-link"
+                    >
                         <svg className="inline-block" width="60" height="60" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M8 0L0 8l8 8 8-8z"/>
                         </svg>
+                        {/* Tooltip */}
+                        <div className="absolute left-1/2 -translate-x-1/2 -bottom-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            <div className="bg-[#1e1e1e] text-white text-xs px-3 py-2 rounded shadow-lg border border-[#3c3c3c] whitespace-nowrap">
+                                🎯 Test Automation Showcase
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 w-2 h-2 bg-[#1e1e1e] border-t border-l border-[#3c3c3c]"></div>
+                            </div>
+                        </div>
                     </div>
                     <div className="text-lg md:text-xl font-light mb-2 text-[#cccccc] transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
                         <TypingAnimation text="Henri-John Plaatjies" speed={80} showCursor={false} />
@@ -37,21 +49,6 @@ const Editor: React.FC = () => {
                         <span className="md:hidden">Type </span>
                         <span className="text-yellow-400 font-semibold transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">help</span> in the terminal below
                     </div>
-                    
-                    {/* Test Automation Showcase Button */}
-                    <button
-                        data-testid="open-showcase-btn"
-                        onClick={() => {
-                            const showcaseFile = files[0]?.children?.find(f => f.id === 'test-showcase');
-                            if (showcaseFile) {
-                                openFile(showcaseFile);
-                            }
-                        }}
-                        className="px-6 py-3 bg-gradient-to-r from-[#007acc] to-[#005a9e] text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,122,204,0.5)] flex items-center gap-2 mx-auto"
-                    >
-                        <span>🎯</span>
-                        <span>View Test Automation Showcase</span>
-                    </button>
                 </div>
             </div>
         );
@@ -138,9 +135,7 @@ const Editor: React.FC = () => {
 
             {/* Content */}
             <div className="flex-1 overflow-auto relative" style={{ fontFamily: 'Consolas, "Courier New", monospace' }}>
-                {activeFile.id === 'test-showcase' && showPreview ? (
-                    <TestAutomationShowcase />
-                ) : activeFile.language === 'json' ? (
+                {activeFile.language === 'json' ? (
                     <InteractiveJsonViewer content={activeFile.content || ''} />
                 ) : activeFile.language === 'markdown' && showPreview ? (
                     <div className="markdown-preview p-8 text-[#cccccc] max-w-4xl mx-auto">
