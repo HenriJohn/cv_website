@@ -17,37 +17,58 @@ const Editor: React.FC = () => {
 
     if (!activeFile) {
         return (
-            <div className="flex-1 flex flex-col items-center justify-center bg-vscode-editor text-gray-500 p-4 relative overflow-hidden">
+            <div className="flex-1 flex flex-col items-center justify-center bg-vscode-editor p-6 relative overflow-hidden">
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-vscode-bg via-vscode-sidebar to-vscode-bg animate-gradient-shift" />
                 <ParticleBackground />
-                <div className="text-center max-w-md relative z-10">
-                    <div 
-                        className="text-4xl md:text-6xl font-light mb-4 text-vscode-text opacity-20 transition-all duration-500 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(0,168,232,0.6)] cursor-pointer group relative"
-                        onClick={() => navigate('/test-showcase')}
-                        data-testid="hidden-showcase-link"
-                    >
-                        <svg className="inline-block" width="60" height="60" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 0L0 8l8 8 8-8z"/>
-                        </svg>
-                        {/* Tooltip */}
-                        <div className="absolute left-1/2 -translate-x-1/2 -bottom-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                            <div className="bg-vscode-bg text-white text-xs px-3 py-2 rounded shadow-lg border border-vscode-border whitespace-nowrap">
-                                🎯 Test Automation Showcase
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 w-2 h-2 bg-vscode-bg border-t border-l border-vscode-border"></div>
+                
+                {/* Modern Card Container */}
+                <div className="relative z-10 max-w-2xl w-full">
+                    <div className="bg-vscode-bg/80 backdrop-blur-sm rounded-lg border border-vscode-border p-8 shadow-2xl">
+                        {/* Header */}
+                        <div className="text-center mb-8">
+                            <div 
+                                className="inline-block text-5xl md:text-6xl mb-6 cursor-pointer group relative"
+                                onClick={() => navigate('/test-showcase')}
+                                data-testid="hidden-showcase-link"
+                            >
+                                <div className="relative">
+                                    <svg className="inline-block text-vscode-text opacity-30 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_rgba(0,168,232,0.6)]" width="120" height="120" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M8 0L0 8l8 8 8-8z"/>
+                                    </svg>
+                                    {/* View Showcase button inside diamond */}
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <span className="text-xs font-bold text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                                            View<br/>Showcase
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
+                                <TypingAnimation text="Henri-John Plaatjies" speed={80} showCursor={false} />
+                            </h1>
+                            <p className="text-lg md:text-xl text-vscode-accent mb-6">
+                                <TypingAnimation text="Senior Test Automation Engineer" speed={60} delay={2000} />
+                            </p>
+                        </div>
+
+                        {/* Info Cards */}
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-vscode-sidebar/50 rounded-lg p-4 border border-vscode-border/50">
+                                <div className="text-sm text-gray-400 mb-1">Get Started</div>
+                                <div className="text-white">
+                                    <span className="hidden md:inline">Select a file from the explorer</span>
+                                    <span className="md:hidden">Select a file</span>
+                                </div>
+                            </div>
+                            <div className="bg-vscode-sidebar/50 rounded-lg p-4 border border-vscode-border/50">
+                                <div className="text-sm text-gray-400 mb-1">Quick Command</div>
+                                <div className="text-white">
+                                    Type <span className="text-yellow-400 font-semibold px-2 py-1 bg-yellow-400/10 rounded">help</span> in terminal
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="text-lg md:text-xl font-light mb-2 text-vscode-text transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-                        <TypingAnimation text="Henri-John Plaatjies" speed={80} showCursor={false} />
-                    </div>
-                    <div className="text-xs md:text-sm mb-4 transition-all duration-300 hover:text-[#4fc3f7]">
-                        <TypingAnimation text="Senior Test Automation Engineer" speed={60} delay={2000} />
-                    </div>
-                    <div className="text-xs md:text-sm mb-8 text-gray-500">
-                        <span className="hidden md:inline">Select a file from the explorer or </span>
-                        <span className="md:hidden">Type </span>
-                        <span className="text-yellow-400 font-semibold transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">help</span> in the terminal below
                     </div>
                 </div>
             </div>
