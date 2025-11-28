@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { CheckCircle, Loader, Search, AlertCircle, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -144,7 +145,7 @@ const TestAutomationShowcase: React.FC = () => {
                 </div>
             </div>
 
-            <div className="p-6 max-w-6xl mx-auto pb-20">
+            <div className="p-6 max-w-6xl mx-auto pb-40">
                 <div className="mb-8">
                     <p className="text-[#858585]">Interactive components designed for comprehensive test automation</p>
                 </div>
@@ -459,37 +460,54 @@ const TestAutomationShowcase: React.FC = () => {
                     Open Modal
                 </button>
 
-                {showModal && (
-                    <div data-testid="modal-overlay" className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-                        <div data-testid="modal-content" className="bg-[#1e1e1e] p-6 rounded-lg border border-[#3c3c3c] max-w-md w-full mx-4">
-                            <h3 className="text-xl font-semibold text-white mb-4">Test Modal</h3>
-                            <p className="text-[#cccccc] mb-6">
-                                This is a modal dialog for testing overlay interactions and focus management.
-                            </p>
-                            <div className="flex gap-2 justify-end">
-                                <button
-                                    data-testid="modal-cancel"
-                                    onClick={() => setShowModal(false)}
-                                    className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    data-testid="modal-confirm"
-                                    onClick={() => {
-                                        setShowModal(false);
-                                        showToastNotification('Modal action confirmed!');
-                                    }}
-                                    className="px-4 py-2 bg-[#007acc] text-white rounded hover:bg-[#005a9e]"
-                                >
-                                    Confirm
-                                </button>
-                            </div>
+            </div>
+            </div>
+
+            {/* Modal Dialog - Rendered via portal at document root */}
+            {showModal && createPortal(
+                <div 
+                    data-testid="modal-overlay" 
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 9999
+                    }}
+                >
+                    <div data-testid="modal-content" className="bg-[#1e1e1e] p-6 rounded-lg border border-[#3c3c3c] max-w-md w-full mx-4">
+                        <h3 className="text-xl font-semibold text-white mb-4">Test Modal</h3>
+                        <p className="text-[#cccccc] mb-6">
+                            This is a modal dialog for testing overlay interactions and focus management.
+                        </p>
+                        <div className="flex gap-2 justify-end">
+                            <button
+                                data-testid="modal-cancel"
+                                onClick={() => setShowModal(false)}
+                                className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                data-testid="modal-confirm"
+                                onClick={() => {
+                                    setShowModal(false);
+                                    showToastNotification('Modal action confirmed!');
+                                }}
+                                className="px-4 py-2 bg-[#007acc] text-white rounded hover:bg-[#005a9e]"
+                            >
+                                Confirm
+                            </button>
                         </div>
                     </div>
-                )}
-            </div>
-            </div>
+                </div>,
+                document.body
+            )}
         </div>
     );
 };
