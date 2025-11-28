@@ -5,6 +5,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import ReactMarkdown from 'react-markdown';
 import type { FileNode } from '../data/fileSystem';
+import ParticleBackground from './ParticleBackground';
 
 const Editor: React.FC = () => {
     const { activeFile, openFiles, closeFile, setActiveFile } = useExplorer();
@@ -12,8 +13,11 @@ const Editor: React.FC = () => {
 
     if (!activeFile) {
         return (
-            <div className="flex-1 flex flex-col items-center justify-center bg-vscode-editor text-[#858585] p-4">
-                <div className="text-center max-w-md">
+            <div className="flex-1 flex flex-col items-center justify-center bg-vscode-editor text-[#858585] p-4 relative overflow-hidden">
+                {/* Animated gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#1e1e1e] via-[#252526] to-[#1e1e1e] animate-gradient-shift" />
+                <ParticleBackground />
+                <div className="text-center max-w-md relative z-10">
                     <div className="text-4xl md:text-6xl font-light mb-4 text-[#cccccc] opacity-20 transition-all duration-500 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(0,168,232,0.6)]">
                         <svg className="inline-block" width="60" height="60" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M8 0L0 8l8 8 8-8z"/>
