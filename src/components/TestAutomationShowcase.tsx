@@ -126,14 +126,14 @@ const TestAutomationShowcase: React.FC = () => {
         : tableData.filter(item => item.status === filterStatus);
 
     return (
-        <div className="w-full bg-vscode-editor text-[#cccccc]">
+        <div className="w-full bg-vscode-editor text-vscode-text">
             {/* Header with Back Button */}
-            <div className="sticky top-0 z-50 bg-[#1e1e1e] border-b border-[#3c3c3c] px-6 py-4">
+            <div className="sticky top-0 z-50 bg-vscode-bg border-b border-vscode-border px-6 py-4">
                 <div className="max-w-6xl mx-auto flex items-center justify-between">
                     <button
                         data-testid="back-to-cv-btn"
                         onClick={() => navigate('/')}
-                        className="flex items-center gap-2 px-4 py-2 bg-[#252526] hover:bg-[#2a2d2e] text-white rounded transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 bg-vscode-sidebar hover:bg-vscode-lineHighlight text-white rounded transition-colors"
                     >
                         <ArrowLeft size={18} />
                         <span>Back to CV</span>
@@ -147,7 +147,7 @@ const TestAutomationShowcase: React.FC = () => {
 
             <div className="p-6 max-w-6xl mx-auto pb-40">
                 <div className="mb-8">
-                    <p className="text-[#858585]">Interactive components designed for comprehensive test automation</p>
+                    <p className="text-gray-500">Interactive components designed for comprehensive test automation</p>
                 </div>
 
             {/* Toast Notification */}
@@ -164,13 +164,13 @@ const TestAutomationShowcase: React.FC = () => {
             )}
 
             {/* Section 1: Dynamic Content Loading */}
-            <div data-testid="section-dynamic-content" className="mb-8 p-6 bg-[#1e1e1e] rounded-lg border border-[#3c3c3c]">
+            <div data-testid="section-dynamic-content" className="mb-8 p-6 bg-vscode-bg rounded-lg border border-vscode-border">
                 <h2 className="text-xl font-semibold text-white mb-4">1. Dynamic Content Loading</h2>
                 <button
                     data-testid="load-dynamic-btn"
                     onClick={handleLoadDynamicContent}
                     disabled={isLoading}
-                    className="px-4 py-2 bg-[#007acc] text-white rounded hover:bg-[#005a9e] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    className="px-4 py-2 bg-vscode-accent text-white rounded hover:bg-vscode-accent/80 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                 >
                     {isLoading ? (
                         <>
@@ -182,14 +182,14 @@ const TestAutomationShowcase: React.FC = () => {
                     )}
                 </button>
                 {dynamicText && (
-                    <div data-testid="dynamic-content" className="mt-4 p-4 bg-[#252526] rounded border border-green-500">
+                    <div data-testid="dynamic-content" className="mt-4 p-4 bg-vscode-sidebar rounded border border-green-500">
                         {dynamicText}
                     </div>
                 )}
             </div>
 
             {/* Section 2: Counter (State Testing) */}
-            <div data-testid="section-counter" className="mb-8 p-6 bg-[#1e1e1e] rounded-lg border border-[#3c3c3c]">
+            <div data-testid="section-counter" className="mb-8 p-6 bg-vscode-bg rounded-lg border border-vscode-border">
                 <h2 className="text-xl font-semibold text-white mb-4">2. State Management</h2>
                 <div className="flex items-center gap-4">
                     <button
@@ -220,7 +220,7 @@ const TestAutomationShowcase: React.FC = () => {
             </div>
 
             {/* Section 3: Form Validation */}
-            <div data-testid="section-form" className="mb-8 p-6 bg-[#1e1e1e] rounded-lg border border-[#3c3c3c]">
+            <div data-testid="section-form" className="mb-8 p-6 bg-vscode-bg rounded-lg border border-vscode-border">
                 <h2 className="text-xl font-semibold text-white mb-4">3. Form Validation</h2>
                 <form onSubmit={handleSubmitForm} className="space-y-4">
                     <div>
@@ -231,7 +231,7 @@ const TestAutomationShowcase: React.FC = () => {
                             type="text"
                             value={formData.username}
                             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                            className="w-full px-3 py-2 bg-[#252526] border border-[#3c3c3c] rounded text-white focus:border-[#007acc] outline-none"
+                            className="w-full px-3 py-2 bg-vscode-sidebar border border-vscode-border rounded text-white focus:border-vscode-accent outline-none"
                             placeholder="Enter username"
                         />
                         {formErrors.username && (
@@ -250,7 +250,7 @@ const TestAutomationShowcase: React.FC = () => {
                             type="email"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full px-3 py-2 bg-[#252526] border border-[#3c3c3c] rounded text-white focus:border-[#007acc] outline-none"
+                            className="w-full px-3 py-2 bg-vscode-sidebar border border-vscode-border rounded text-white focus:border-vscode-accent outline-none"
                             placeholder="Enter email"
                         />
                         {formErrors.email && (
@@ -269,7 +269,7 @@ const TestAutomationShowcase: React.FC = () => {
                             type="password"
                             value={formData.password}
                             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                            className="w-full px-3 py-2 bg-[#252526] border border-[#3c3c3c] rounded text-white focus:border-[#007acc] outline-none"
+                            className="w-full px-3 py-2 bg-vscode-sidebar border border-vscode-border rounded text-white focus:border-vscode-accent outline-none"
                             placeholder="Enter password"
                         />
                         {formErrors.password && (
@@ -287,7 +287,7 @@ const TestAutomationShowcase: React.FC = () => {
                             id="country"
                             value={formData.country}
                             onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                            className="w-full px-3 py-2 bg-[#252526] border border-[#3c3c3c] rounded text-white focus:border-[#007acc] outline-none"
+                            className="w-full px-3 py-2 bg-vscode-sidebar border border-vscode-border rounded text-white focus:border-vscode-accent outline-none"
                         >
                             <option value="">Select a country</option>
                             <option value="USA">United States</option>
@@ -325,7 +325,7 @@ const TestAutomationShowcase: React.FC = () => {
                     <button
                         data-testid="form-submit"
                         type="submit"
-                        className="px-6 py-2 bg-[#007acc] text-white rounded hover:bg-[#005a9e]"
+                        className="px-6 py-2 bg-vscode-accent text-white rounded hover:bg-vscode-accent/80"
                     >
                         Submit Form
                     </button>
@@ -340,27 +340,27 @@ const TestAutomationShowcase: React.FC = () => {
             </div>
 
             {/* Section 4: Search with Autocomplete */}
-            <div data-testid="section-search" className="mb-8 p-6 bg-[#1e1e1e] rounded-lg border border-[#3c3c3c]">
+            <div data-testid="section-search" className="mb-8 p-6 bg-vscode-bg rounded-lg border border-vscode-border">
                 <h2 className="text-xl font-semibold text-white mb-4">4. Search with Autocomplete</h2>
                 <div className="relative">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#858585]" size={18} />
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
                         <input
                             data-testid="search-input"
                             type="text"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             placeholder="Search test frameworks..."
-                            className="w-full pl-10 pr-3 py-2 bg-[#252526] border border-[#3c3c3c] rounded text-white focus:border-[#007acc] outline-none"
+                            className="w-full pl-10 pr-3 py-2 bg-vscode-sidebar border border-vscode-border rounded text-white focus:border-vscode-accent outline-none"
                         />
                     </div>
                     {searchResults.length > 0 && (
-                        <div data-testid="search-results" className="absolute w-full mt-1 bg-[#252526] border border-[#3c3c3c] rounded shadow-lg z-10">
+                        <div data-testid="search-results" className="absolute w-full mt-1 bg-vscode-sidebar border border-vscode-border rounded shadow-lg z-10">
                             {searchResults.map((result, index) => (
                                 <div
                                     key={result}
                                     data-testid={`search-result-${index}`}
-                                    className="px-4 py-2 hover:bg-[#37373d] cursor-pointer"
+                                    className="px-4 py-2 hover:bg-vscode-selection cursor-pointer"
                                     onClick={() => {
                                         setSearchTerm(result);
                                         setSearchResults([]);
@@ -375,28 +375,28 @@ const TestAutomationShowcase: React.FC = () => {
             </div>
 
             {/* Section 5: Data Table with Sorting and Filtering */}
-            <div data-testid="section-table" className="mb-8 p-6 bg-[#1e1e1e] rounded-lg border border-[#3c3c3c]">
+            <div data-testid="section-table" className="mb-8 p-6 bg-vscode-bg rounded-lg border border-vscode-border">
                 <h2 className="text-xl font-semibold text-white mb-4">5. Data Table (Sort & Filter)</h2>
                 
                 <div className="mb-4 flex gap-2">
                     <button
                         data-testid="filter-all"
                         onClick={() => setFilterStatus('all')}
-                        className={`px-4 py-2 rounded ${filterStatus === 'all' ? 'bg-[#007acc] text-white' : 'bg-[#252526] text-[#cccccc]'}`}
+                        className={`px-4 py-2 rounded ${filterStatus === 'all' ? 'bg-vscode-accent text-white' : 'bg-vscode-sidebar text-vscode-text'}`}
                     >
                         All
                     </button>
                     <button
                         data-testid="filter-active"
                         onClick={() => setFilterStatus('Active')}
-                        className={`px-4 py-2 rounded ${filterStatus === 'Active' ? 'bg-[#007acc] text-white' : 'bg-[#252526] text-[#cccccc]'}`}
+                        className={`px-4 py-2 rounded ${filterStatus === 'Active' ? 'bg-vscode-accent text-white' : 'bg-vscode-sidebar text-vscode-text'}`}
                     >
                         Active
                     </button>
                     <button
                         data-testid="filter-inactive"
                         onClick={() => setFilterStatus('Inactive')}
-                        className={`px-4 py-2 rounded ${filterStatus === 'Inactive' ? 'bg-[#007acc] text-white' : 'bg-[#252526] text-[#cccccc]'}`}
+                        className={`px-4 py-2 rounded ${filterStatus === 'Inactive' ? 'bg-vscode-accent text-white' : 'bg-vscode-sidebar text-vscode-text'}`}
                     >
                         Inactive
                     </button>
@@ -405,7 +405,7 @@ const TestAutomationShowcase: React.FC = () => {
                 <div className="overflow-x-auto">
                     <table data-testid="data-table" className="w-full border-collapse">
                         <thead>
-                            <tr className="border-b border-[#3c3c3c]">
+                            <tr className="border-b border-vscode-border">
                                 <th className="text-left p-3">ID</th>
                                 <th className="text-left p-3">
                                     <button
@@ -425,7 +425,7 @@ const TestAutomationShowcase: React.FC = () => {
                                 <tr
                                     key={row.id}
                                     data-testid={`table-row-${row.id}`}
-                                    className="border-b border-[#3c3c3c] hover:bg-[#252526]"
+                                    className="border-b border-vscode-border hover:bg-vscode-sidebar"
                                 >
                                     <td className="p-3">{row.id}</td>
                                     <td className="p-3">{row.name}</td>
@@ -450,12 +450,12 @@ const TestAutomationShowcase: React.FC = () => {
             </div>
 
             {/* Section 6: Modal Dialog */}
-            <div data-testid="section-modal" className="mb-8 p-6 bg-[#1e1e1e] rounded-lg border border-[#3c3c3c]">
+            <div data-testid="section-modal" className="mb-8 p-6 bg-vscode-bg rounded-lg border border-vscode-border">
                 <h2 className="text-xl font-semibold text-white mb-4">6. Modal Dialog</h2>
                 <button
                     data-testid="open-modal-btn"
                     onClick={() => setShowModal(true)}
-                    className="px-4 py-2 bg-[#007acc] text-white rounded hover:bg-[#005a9e]"
+                    className="px-4 py-2 bg-vscode-accent text-white rounded hover:bg-vscode-accent/80"
                 >
                     Open Modal
                 </button>
@@ -480,9 +480,9 @@ const TestAutomationShowcase: React.FC = () => {
                         zIndex: 9999
                     }}
                 >
-                    <div data-testid="modal-content" className="bg-[#1e1e1e] p-6 rounded-lg border border-[#3c3c3c] max-w-md w-full mx-4">
+                    <div data-testid="modal-content" className="bg-vscode-bg p-6 rounded-lg border border-vscode-border max-w-md w-full mx-4">
                         <h3 className="text-xl font-semibold text-white mb-4">Test Modal</h3>
-                        <p className="text-[#cccccc] mb-6">
+                        <p className="text-vscode-text mb-6">
                             This is a modal dialog for testing overlay interactions and focus management.
                         </p>
                         <div className="flex gap-2 justify-end">
@@ -499,7 +499,7 @@ const TestAutomationShowcase: React.FC = () => {
                                     setShowModal(false);
                                     showToastNotification('Modal action confirmed!');
                                 }}
-                                className="px-4 py-2 bg-[#007acc] text-white rounded hover:bg-[#005a9e]"
+                                className="px-4 py-2 bg-vscode-accent text-white rounded hover:bg-vscode-accent/80"
                             >
                                 Confirm
                             </button>
