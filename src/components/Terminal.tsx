@@ -5,7 +5,7 @@ import { useExplorer } from '../context/ExplorerContext';
 const Terminal: React.FC = () => {
     const { toggleTheme } = useExplorer();
     const [isMinimized, setIsMinimized] = useState(false);
-    const [terminalHeight, setTerminalHeight] = useState(224); // Default height in pixels (h-56 = 224px)
+    const [terminalHeight, setTerminalHeight] = useState(200); // Default height in pixels
     const [isDragging, setIsDragging] = useState(false);
     const [input, setInput] = useState('');
     const [history, setHistory] = useState<Array<{ command: string; output: React.ReactNode }>>([
@@ -331,10 +331,12 @@ const Terminal: React.FC = () => {
             {/* Drag Handle */}
             {!isMinimized && (
                 <div 
-                    className="absolute top-0 left-0 right-0 h-1 cursor-ns-resize hover:bg-vscode-accent transition-colors z-10"
+                    className={`absolute top-0 left-0 right-0 h-1 cursor-ns-resize transition-colors z-10 ${isDragging ? 'bg-vscode-accent' : 'hover:bg-vscode-accent/50'}`}
                     onMouseDown={handleDragStart}
                     title="Drag to resize terminal"
-                />
+                >
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-gray-600 rounded-full opacity-50 hover:opacity-100" />
+                </div>
             )}
             
             {/* Terminal Tabs */}
