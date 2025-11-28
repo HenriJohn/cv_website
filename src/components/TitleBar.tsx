@@ -3,13 +3,13 @@ import { Minus, Square, X } from 'lucide-react';
 
 const TitleBar: React.FC = () => {
     return (
-        <div data-testid="title-bar" className="h-9 bg-[#3c3c3c] flex items-center justify-between px-2 text-xs select-none border-b border-black/20">
+        <div data-testid="title-bar" className="h-9 bg-vscode-activityBar flex items-center justify-between px-2 text-xs select-none border-b border-vscode-border">
             {/* Left: Menu items */}
             <div className="flex items-center gap-1 flex-shrink-0">
                 <div data-testid="vscode-logo" className="px-2 py-1 hover:bg-white/10 cursor-pointer rounded">
                     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%2300a8e8' d='M8 0L0 8l8 8 8-8z'/%3E%3C/svg%3E" alt="VS Code" className="w-4 h-4" />
                 </div>
-                <div data-testid="menu-bar" className="hidden md:flex items-center text-[#cccccc]">
+                <div data-testid="menu-bar" className="hidden md:flex items-center text-vscode-text">
                     <span data-testid="menu-file" className="px-2 py-1 hover:bg-white/10 cursor-pointer">File</span>
                     <span data-testid="menu-edit" className="px-2 py-1 hover:bg-white/10 cursor-pointer">Edit</span>
                     <span data-testid="menu-selection" className="px-2 py-1 hover:bg-white/10 cursor-pointer">Selection</span>
@@ -22,7 +22,7 @@ const TitleBar: React.FC = () => {
             </div>
 
             {/* Center: Title */}
-            <div className="flex-1 text-center text-[#cccccc] font-normal text-xs px-2 overflow-hidden">
+            <div className="flex-1 text-center text-vscode-text font-normal text-xs px-2 overflow-hidden">
                 <span className="hidden sm:inline">Henri-John Plaatjies - Senior Test Automation Engineer</span>
                 <span className="sm:hidden truncate block">Henri-John Plaatjies</span>
             </div>

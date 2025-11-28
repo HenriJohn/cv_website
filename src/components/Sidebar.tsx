@@ -40,7 +40,7 @@ const FileTreeItem = ({ node, depth }: { node: FileNode; depth: number }) => {
                 data-testid={`file-tree-item-${node.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                 className={`flex items-center py-0.5 px-2 cursor-pointer text-[13px] transition-all duration-200 ${
                     isActive 
-                        ? 'bg-vscode-selection text-white shadow-[2px_0_0_0_#007acc_inset]' 
+                        ? 'bg-vscode-selection text-white shadow-[2px_0_0_0_var(--vscode-accent)_inset]' 
                         : 'text-vscode-text hover:bg-vscode-lineHighlight hover:text-white hover:shadow-[2px_0_0_0_rgba(0,122,204,0.3)_inset]'
                 }`}
                 style={{ paddingLeft: `${depth * 16 + 8}px` }}

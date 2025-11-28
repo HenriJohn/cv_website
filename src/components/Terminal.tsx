@@ -199,7 +199,7 @@ const Terminal: React.FC = () => {
                 <div className="flex items-center gap-3 md:gap-6 text-[10px] md:text-[11px] uppercase tracking-wide text-vscode-text">
                     <span className="hidden md:inline cursor-pointer hover:text-white opacity-60">Problems</span>
                     <span className="hidden md:inline cursor-pointer hover:text-white opacity-60">Output</span>
-                    <span data-testid="terminal-tab" className="cursor-pointer text-white border-b-2 border-[#007acc] pb-1">Terminal</span>
+                    <span data-testid="terminal-tab" className="cursor-pointer text-white border-b-2 border-vscode-accent pb-1">Terminal</span>
                 </div>
                 <div className="flex items-center gap-3 text-vscode-text">
                     <div data-testid="terminal-clear-btn" title="Clear terminal" onClick={(e) => { e.stopPropagation(); setHistory([]); }}>

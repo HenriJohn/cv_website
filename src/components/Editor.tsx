@@ -93,7 +93,7 @@ const Editor: React.FC = () => {
                         data-testid={`editor-tab-${file.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                         className={`flex items-center px-3 py-2 min-w-fit cursor-pointer text-[13px] border-r border-vscode-border transition-all duration-200 ${
                             activeFile.id === file.id
-                                ? 'bg-vscode-editor text-white shadow-[0_-2px_0_0_#007acc_inset]'
+                                ? 'bg-vscode-editor text-white shadow-[0_-2px_0_0_var(--vscode-accent)_inset]'
                                 : 'bg-vscode-tabInactive text-gray-400 hover:bg-vscode-lineHighlight hover:text-white'
                         }`}
                         onClick={() => setActiveFile(file)}
@@ -162,21 +162,21 @@ const Editor: React.FC = () => {
                     <div className="markdown-preview p-8 text-vscode-text max-w-4xl mx-auto">
                         <ReactMarkdown
                             components={{
-                                h1: ({node, ...props}) => <h1 className="text-3xl font-bold mb-4 text-white border-b border-[#404040] pb-2" {...props} />,
+                                h1: ({node, ...props}) => <h1 className="text-3xl font-bold mb-4 text-white border-b border-vscode-border pb-2" {...props} />,
                                 h2: ({node, ...props}) => <h2 className="text-2xl font-bold mb-3 mt-6 text-white" {...props} />,
                                 h3: ({node, ...props}) => <h3 className="text-xl font-bold mb-2 mt-4 text-white" {...props} />,
                                 p: ({node, ...props}) => <p className="mb-4 leading-relaxed" {...props} />,
                                 ul: ({node, ...props}) => <ul className="list-disc list-inside mb-4 space-y-2" {...props} />,
                                 ol: ({node, ...props}) => <ol className="list-decimal list-inside mb-4 space-y-2" {...props} />,
                                 li: ({node, ...props}) => <li className="ml-4" {...props} />,
-                                a: ({node, ...props}) => <a className="text-[#4fc3f7] hover:underline" {...props} />,
+                                a: ({node, ...props}) => <a className="text-vscode-accent hover:underline" {...props} />,
                                 code: ({node, inline, ...props}: any) => 
                                     inline ? (
-                                        <code className="bg-[#2d2d2d] px-1.5 py-0.5 rounded text-[#ce9178] text-sm" {...props} />
+                                        <code className="bg-vscode-sidebar px-1.5 py-0.5 rounded text-orange-300 text-sm" {...props} />
                                     ) : (
-                                        <code className="block bg-[#1e1e1e] p-4 rounded my-4 overflow-x-auto" {...props} />
+                                        <code className="block bg-vscode-bg p-4 rounded my-4 overflow-x-auto" {...props} />
                                     ),
-                                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-[#404040] pl-4 italic my-4 text-[#858585]" {...props} />,
+                                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-vscode-border pl-4 italic my-4 text-gray-500" {...props} />,
                                 strong: ({node, ...props}) => <strong className="font-bold text-white" {...props} />,
                                 em: ({node, ...props}) => <em className="italic" {...props} />,
                             }}
