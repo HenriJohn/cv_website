@@ -14,17 +14,17 @@ const Editor: React.FC = () => {
         return (
             <div className="flex-1 flex flex-col items-center justify-center bg-vscode-editor text-[#858585] p-4">
                 <div className="text-center max-w-md">
-                    <div className="text-4xl md:text-6xl font-light mb-4 text-[#cccccc] opacity-20">
+                    <div className="text-4xl md:text-6xl font-light mb-4 text-[#cccccc] opacity-20 transition-all duration-500 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(0,168,232,0.6)]">
                         <svg className="inline-block" width="60" height="60" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M8 0L0 8l8 8 8-8z"/>
                         </svg>
                     </div>
-                    <div className="text-lg md:text-xl font-light mb-2 text-[#cccccc]">Henri-John Plaatjies</div>
-                    <div className="text-xs md:text-sm mb-4">Senior Test Automation Engineer</div>
+                    <div className="text-lg md:text-xl font-light mb-2 text-[#cccccc] transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">Henri-John Plaatjies</div>
+                    <div className="text-xs md:text-sm mb-4 transition-all duration-300 hover:text-[#4fc3f7]">Senior Test Automation Engineer</div>
                     <div className="text-xs md:text-sm mb-8 text-[#858585]">
                         <span className="hidden md:inline">Select a file from the explorer or </span>
                         <span className="md:hidden">Type </span>
-                        <span className="text-yellow-400">help</span> in the terminal below
+                        <span className="text-yellow-400 font-semibold transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">help</span> in the terminal below
                     </div>
                 </div>
             </div>
@@ -46,10 +46,10 @@ const Editor: React.FC = () => {
                 {openFiles.map(file => (
                     <div
                         key={file.id}
-                        className={`flex items-center px-3 py-2 min-w-fit cursor-pointer text-[13px] border-r border-[#252526] transition-colors ${
+                        className={`flex items-center px-3 py-2 min-w-fit cursor-pointer text-[13px] border-r border-[#252526] transition-all duration-200 ${
                             activeFile.id === file.id
-                                ? 'bg-vscode-editor text-white'
-                                : 'bg-vscode-tabInactive text-[#969696] hover:bg-[#2d2d2d]'
+                                ? 'bg-vscode-editor text-white shadow-[0_-2px_0_0_#007acc_inset]'
+                                : 'bg-vscode-tabInactive text-[#969696] hover:bg-[#2d2d2d] hover:text-white'
                         }`}
                         onClick={() => setActiveFile(file)}
                     >
