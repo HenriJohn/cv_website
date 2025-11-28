@@ -170,7 +170,7 @@ const TestAutomationShowcase: React.FC = () => {
                     data-testid="load-dynamic-btn"
                     onClick={handleLoadDynamicContent}
                     disabled={isLoading}
-                    className="px-4 py-2 bg-vscode-accent text-white rounded hover:bg-vscode-accent/80 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                 >
                     {isLoading ? (
                         <>
@@ -480,9 +480,9 @@ const TestAutomationShowcase: React.FC = () => {
                         zIndex: 9999
                     }}
                 >
-                    <div data-testid="modal-content" className="bg-vscode-bg p-6 rounded-lg border border-vscode-border max-w-md w-full mx-4">
+                    <div data-testid="modal-content" className="bg-[#1e1e1e] p-6 rounded-lg border border-[#3c3c3c] max-w-md w-full mx-4 shadow-2xl">
                         <h3 className="text-xl font-semibold text-white mb-4">Test Modal</h3>
-                        <p className="text-vscode-text mb-6">
+                        <p className="text-gray-300 mb-6">
                             This is a modal dialog for testing overlay interactions and focus management.
                         </p>
                         <div className="flex gap-2 justify-end">
@@ -499,7 +499,7 @@ const TestAutomationShowcase: React.FC = () => {
                                     setShowModal(false);
                                     showToastNotification('Modal action confirmed!');
                                 }}
-                                className="px-4 py-2 bg-vscode-accent text-white rounded hover:bg-vscode-accent/80"
+                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
                             >
                                 Confirm
                             </button>
