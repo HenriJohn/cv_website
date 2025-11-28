@@ -5,6 +5,8 @@ import { useExplorer } from '../context/ExplorerContext';
 const Terminal: React.FC = () => {
     const { toggleTheme } = useExplorer();
     const [isMinimized, setIsMinimized] = useState(false);
+    const [terminalHeight, setTerminalHeight] = useState(224); // Default height in pixels (h-56 = 224px)
+    const [isDragging, setIsDragging] = useState(false);
     const [input, setInput] = useState('');
     const [history, setHistory] = useState<Array<{ command: string; output: React.ReactNode }>>([
         { command: '', output: 'Welcome to the interactive terminal! Type "help" to see available commands.' }
@@ -24,6 +26,36 @@ const Terminal: React.FC = () => {
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [history]);
+
+    // Handle terminal resize by dragging
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (isDragging) {
+                const newHeight = window.innerHeight - e.clientY;
+                // Constrain height between 100px and 80% of window height
+                const constrainedHeight = Math.max(100, Math.min(newHeight, window.innerHeight * 0.8));
+                setTerminalHeight(constrainedHeight);
+            }
+        };
+
+        const handleMouseUp = () => {
+            setIsDragging(false);
+        };
+
+        if (isDragging) {
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+        }
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, [isDragging]);
+
+    const handleDragStart = () => {
+        setIsDragging(true);
+    };
 
     const handleCommand = (cmd: string) => {
         const cleanCmd = cmd.trim().toLowerCase();
@@ -295,7 +327,16 @@ const Terminal: React.FC = () => {
     };
 
     return (
-        <div data-testid="terminal" className={`${isMinimized ? 'h-[35px]' : 'h-48 md:h-56'} bg-vscode-terminal border-t border-vscode-border flex flex-col transition-all duration-200`}>
+        <div data-testid="terminal" className="bg-vscode-terminal border-t border-vscode-border flex flex-col relative" style={{ height: isMinimized ? '35px' : `${terminalHeight}px` }}>
+            {/* Drag Handle */}
+            {!isMinimized && (
+                <div 
+                    className="absolute top-0 left-0 right-0 h-1 cursor-ns-resize hover:bg-vscode-accent transition-colors z-10"
+                    onMouseDown={handleDragStart}
+                    title="Drag to resize terminal"
+                />
+            )}
+            
             {/* Terminal Tabs */}
             <div className="flex items-center justify-between px-2 md:px-4 py-1.5 border-b border-vscode-border bg-vscode-terminal">
                 <div className="flex items-center gap-3 md:gap-6 text-[10px] md:text-[11px] uppercase tracking-wide text-vscode-text">
