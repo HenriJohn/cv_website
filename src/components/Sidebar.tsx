@@ -37,10 +37,10 @@ const FileTreeItem = ({ node, depth }: { node: FileNode; depth: number }) => {
     return (
         <div>
             <div
-                className={`flex items-center py-0.5 px-2 cursor-pointer text-[13px] transition-colors ${
+                className={`flex items-center py-0.5 px-2 cursor-pointer text-[13px] transition-all duration-200 ${
                     isActive 
-                        ? 'bg-[#37373d] text-white' 
-                        : 'text-[#cccccc] hover:bg-[#2a2d2e]'
+                        ? 'bg-[#37373d] text-white shadow-[2px_0_0_0_#007acc_inset]' 
+                        : 'text-[#cccccc] hover:bg-[#2a2d2e] hover:text-white hover:shadow-[2px_0_0_0_rgba(0,122,204,0.3)_inset]'
                 }`}
                 style={{ paddingLeft: `${depth * 16 + 8}px` }}
                 onClick={handleClick}
