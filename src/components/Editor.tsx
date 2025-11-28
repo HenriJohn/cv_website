@@ -50,12 +50,13 @@ const Editor: React.FC = () => {
     };
 
     return (
-        <div className="flex-1 flex flex-col bg-vscode-editor overflow-hidden">
+        <div data-testid="editor" className="flex-1 flex flex-col bg-vscode-editor overflow-hidden">
             {/* Tabs */}
-            <div className="flex bg-vscode-tabInactive overflow-x-auto scrollbar-hide h-[35px] border-b border-[#252526]">
+            <div data-testid="editor-tabs" className="flex bg-vscode-tabInactive overflow-x-auto scrollbar-hide h-[35px] border-b border-[#252526]">
                 {openFiles.map(file => (
                     <div
                         key={file.id}
+                        data-testid={`editor-tab-${file.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                         className={`flex items-center px-3 py-2 min-w-fit cursor-pointer text-[13px] border-r border-[#252526] transition-all duration-200 ${
                             activeFile.id === file.id
                                 ? 'bg-vscode-editor text-white shadow-[0_-2px_0_0_#007acc_inset]'
@@ -73,6 +74,7 @@ const Editor: React.FC = () => {
                         </span>
                         <span className="mr-2">{file.name}</span>
                         <X
+                            data-testid={`close-tab-${file.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                             size={14}
                             className="hover:bg-white/20 rounded-sm"
                             onClick={(e) => {

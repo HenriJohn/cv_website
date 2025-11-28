@@ -193,19 +193,19 @@ const Terminal: React.FC = () => {
     };
 
     return (
-        <div className={`${isMinimized ? 'h-[35px]' : 'h-48 md:h-56'} bg-vscode-terminal border-t border-[#252526] flex flex-col transition-all duration-200`}>
+        <div data-testid="terminal" className={`${isMinimized ? 'h-[35px]' : 'h-48 md:h-56'} bg-vscode-terminal border-t border-[#252526] flex flex-col transition-all duration-200`}>
             {/* Terminal Tabs */}
             <div className="flex items-center justify-between px-2 md:px-4 py-1.5 border-b border-[#252526] bg-vscode-terminal">
                 <div className="flex items-center gap-3 md:gap-6 text-[10px] md:text-[11px] uppercase tracking-wide text-[#cccccc]">
                     <span className="hidden md:inline cursor-pointer hover:text-white opacity-60">Problems</span>
                     <span className="hidden md:inline cursor-pointer hover:text-white opacity-60">Output</span>
-                    <span className="cursor-pointer text-white border-b-2 border-[#007acc] pb-1">Terminal</span>
+                    <span data-testid="terminal-tab" className="cursor-pointer text-white border-b-2 border-[#007acc] pb-1">Terminal</span>
                 </div>
                 <div className="flex items-center gap-3 text-[#cccccc]">
-                    <div title="Clear terminal" onClick={(e) => { e.stopPropagation(); setHistory([]); }}>
+                    <div data-testid="terminal-clear-btn" title="Clear terminal" onClick={(e) => { e.stopPropagation(); setHistory([]); }}>
                         <Trash2 size={14} className="cursor-pointer hover:text-white" />
                     </div>
-                    <div title={isMinimized ? "Maximize terminal" : "Minimize terminal"} onClick={(e) => { e.stopPropagation(); setIsMinimized(!isMinimized); }}>
+                    <div data-testid="terminal-toggle-btn" title={isMinimized ? "Maximize terminal" : "Minimize terminal"} onClick={(e) => { e.stopPropagation(); setIsMinimized(!isMinimized); }}>
                         {isMinimized ? (
                             <ChevronUp size={14} className="cursor-pointer hover:text-white" />
                         ) : (
@@ -235,6 +235,7 @@ const Terminal: React.FC = () => {
                         <span className="text-green-400 mr-2">➜</span>
                         <span className="text-blue-400 mr-2">~</span>
                         <input
+                            data-testid="terminal-input"
                             ref={inputRef}
                             type="text"
                             value={input}
