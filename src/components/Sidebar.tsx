@@ -25,7 +25,7 @@ const FileTreeItem = ({ node, depth }: { node: FileNode; depth: number }) => {
             if (node.name === 'download-cv.pdf') {
                 // Trigger download
                 const link = document.createElement('a');
-                link.href = '/cv.pdf'; // Assuming the file is in public folder
+                link.href = '/cv_website/cv.pdf';
                 link.download = 'Henri-John_Plaatjies_CV.pdf';
                 link.click();
             } else {

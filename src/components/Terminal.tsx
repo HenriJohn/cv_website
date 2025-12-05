@@ -150,7 +150,7 @@ const Terminal: React.FC = () => {
                 output = (
                     <div>
                         <span className="text-green-400">✓</span> Initiating CV download...
-                        <br />📄 <a href="/cv.pdf" download className="text-blue-400 underline">Click here to download CV</a>
+                        <br />📄 <a href="/cv_website/cv.pdf" download="Henri-John_Plaatjies_CV.pdf" className="text-blue-400 underline">Click here to download CV</a>
                     </div>
                 );
                 break;
