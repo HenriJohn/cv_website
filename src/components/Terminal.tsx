@@ -223,14 +223,26 @@ const Terminal: React.FC = () => {
                 break;
             case 'joke':
                 const jokes = [
-                    "Why do programmers prefer dark mode? Because light attracts bugs! 🐛",
-                    "How many programmers does it take to change a light bulb? None, that's a hardware problem! 💡",
-                    "Why do Java developers wear glasses? Because they don't C#! 👓",
-                    "A SQL query walks into a bar, walks up to two tables and asks... 'Can I JOIN you?' 🍺",
-                    "Why did the programmer quit his job? Because he didn't get arrays! 📊",
-                    "What's a programmer's favorite hangout place? Foo Bar! 🍻",
-                    "Why do programmers always mix up Halloween and Christmas? Because Oct 31 == Dec 25! 🎃🎄",
-                    "There are 10 types of people in the world: those who understand binary, and those who don't. 😄"
+                    "Why do programmers prefer dark mode? Because light attracts bugs. 🐛",
+                    "QA engineer walks into a bar… Orders 1 beer, 0 beers, -1 beers, \"asdf\" beers, 999999 beers. The bar collapses. 🍺",
+                    "Why do Java developers wear glasses? Because they don't C#. 👓",
+                    "My code never fails. It just… develops unexpected features. ✨",
+                    "What's a programmer's favourite place to hang out? The Foo Bar. 🍻",
+                    "How many programmers does it take to change a light bulb? None — that's a hardware problem. 💡",
+                    "Why did the developer go broke? Because he used up all his cache. 💸",
+                    "I told my computer I needed a break… It said \"No problem, installing updates.\" 🔄",
+                    "Why did the QA tester stay calm during production outages? Because they're used to everything breaking. 😌",
+                    "Debugging: Being the detective in a crime movie where you are also the murderer. 🔍",
+                    "What do testers and magicians have in common? They can both make things disappear — like your assumptions. 🎩",
+                    "Why don't programmers like nature? Too many bugs. 🦟",
+                    "What do you call a programmer from Finland? Nerdic. 🇫🇮",
+                    "What's the most used language in software? Profanity. 🤬",
+                    "Why do testers love coffee? Because they turn caffeine into test cases. ☕",
+                    "Why did the SQL query break up with the database? There were too many joins. 💔",
+                    "My boss told me to stop testing the edge cases… I guess he wants the app to crash in style. 💥",
+                    "What do you call 8 Hobbits? A Hobbyte. 🧙",
+                    "Why did the developer get locked out of the house? He lost his keys… again. 🔑",
+                    "Why don't QAs like surprises? Because surprises are just undocumented features. 📝"
                 ];
                 output = (
                     <div className="text-cyan-400">
@@ -240,14 +252,26 @@ const Terminal: React.FC = () => {
                 break;
             case 'quote':
                 const quotes = [
+                    '"Programs must be written for people to read, and only incidentally for machines to execute." - Harold Abelson',
                     '"First, solve the problem. Then, write the code." - John Johnson',
-                    '"Code is like humor. When you have to explain it, it\'s bad." - Cory House',
+                    '"Talk is cheap. Show me the code." - Linus Torvalds',
+                    '"Simplicity is the soul of efficiency." - Austin Freeman',
                     '"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." - Martin Fowler',
-                    '"Testing leads to failure, and failure leads to understanding." - Burt Rutan',
+                    '"Fix the cause, not the symptom." - Steve Maguire',
+                    '"Code is like humor. When you have to explain it, it\'s bad." - Cory House',
+                    '"Before software can be reusable it first has to be usable." - Ralph Johnson',
+                    '"Experience is the name everyone gives to their mistakes." - Oscar Wilde',
+                    '"Programming isn\'t about what you know; it\'s about what you can figure out." - Chris Pine',
+                    '"Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday\'s code." - Dan Salomon',
                     '"The best error message is the one that never shows up." - Thomas Fuchs',
-                    '"Quality is not an act, it is a habit." - Aristotle',
-                    '"The only way to go fast, is to go well." - Robert C. Martin',
-                    '"Make it work, make it right, make it fast." - Kent Beck'
+                    '"If debugging is the process of removing bugs, then programming must be the process of putting them in." - Edsger Dijkstra',
+                    '"The function of good software is to make the complex appear simple." - Grady Booch',
+                    '"Your most unhappy customers are your greatest source of learning." - Bill Gates',
+                    '"Good software, like wine, takes time." - Joel Spolsky',
+                    '"Testing leads to failure, and failure leads to understanding." - Burt Rutan',
+                    '"There are only two kinds of programming languages: those people complain about, and those nobody uses." - Bjarne Stroustrup',
+                    '"You can\'t improve what you don\'t measure." - Unknown',
+                    '"I am what happens when you try to carve god out of the wood of your own hunger." - ChatGPT'
                 ];
                 output = (
                     <div className="text-purple-400 italic">
