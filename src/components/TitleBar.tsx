@@ -7,7 +7,7 @@ const TitleBar: React.FC = () => {
             {/* Left: Menu items */}
             <div className="flex items-center gap-1 flex-shrink-0">
                 <div data-testid="vscode-logo" className="px-2 py-1 hover:bg-white/10 cursor-pointer rounded">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%2300a8e8' d='M8 0L0 8l8 8 8-8z'/%3E%3C/svg%3E" alt="VS Code" className="w-4 h-4" />
+                    <img src="/cv_website/hjp.svg" alt="HJP" className="w-4 h-4" />
                 </div>
                 <div data-testid="menu-bar" className="hidden md:flex items-center text-vscode-text">
                     <span data-testid="menu-file" className="px-2 py-1 hover:bg-white/10 cursor-pointer">File</span>
